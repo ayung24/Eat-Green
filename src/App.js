@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+
+import Home from './Pages/Home/Home';
+import MeatSelect from './Pages/MeatSelect/MeatSelect';
+import VegSelect from './Pages/VegSelect/VegSelect';
+import Summary from './Pages/Summary/Summary';
+
+import * as Constant from './Constants/Constants';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route path={Constant.ROUTE_HOME} exact component={Home}/>
+          <Route path={Constant.ROUTE_MEAT_SELECT} component={MeatSelect}/>
+          <Route path={Constant.ROUTE_VEG_SELECT} component={VegSelect}/>
+          <Route path={Constant.ROUTE_SUMMARY} component={Summary}/>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
