@@ -1,9 +1,26 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import { db } from "../../firebase";
 
 import * as Constants from '../../Constants/Constants';
 
 class MeatSelect extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+          meatDishes: []
+        };
+      }
+    
+      componentDidMount() {
+        db.collection("Meat")
+          .get()
+          .then(querySnapshot => {
+            const data = querySnapshot.docs.map(doc => doc.data());
+            console.log(data);
+            this.setState({ users: data });
+          });
+      }
     render(){
         return(
             <div>
