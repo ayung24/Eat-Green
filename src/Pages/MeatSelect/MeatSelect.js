@@ -8,7 +8,6 @@ import BeefImage from "../../Assets/steak.png";
 import ChickenImage from "../../Assets/chicken.png";
 import BurritoImage from "../../Assets/burrito.png";
 import HamburgerImage from "../../Assets/burger.png";
-import Counter from "../../Components/Counter";
 import * as Constants from '../../Constants/Constants';
 
 class MeatSelect extends Component {

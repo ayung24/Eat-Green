@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function MeatCardHooksWrapper(Component){
+function CounterHooksWrapper(Component){
   return function WrappedComponent(props) {
     const classes = useStyles();
     const [expanded] = React.useState(false);
@@ -63,11 +63,11 @@ class Counter extends Component {
         <form className={this.props.classes} noValidate autoComplete="off">
           <TextField id="outlined-basic" value={this.state.count} variant="outlined" />
         </form>
-        <IconButton aria-label="share">
-          <AddBoxIcon onClick={this.IncrementItem} />
+        <IconButton aria-label="share" onClick={this.IncrementItem}>
+          <AddBoxIcon/>
         </IconButton>
-        <IconButton aria-label="add to favorites">
-          <IndeterminateCheckBoxIcon onClick={this.DecreaseItem} />
+        <IconButton aria-label="add to favorites" onClick={this.DecreaseItem}>
+          <IndeterminateCheckBoxIcon />
         </IconButton>
         {this.StoreToGlobal}
       </CardActions>
@@ -75,4 +75,4 @@ class Counter extends Component {
   }
 }
 
-export default MeatCardHooksWrapper(Counter);
+export default CounterHooksWrapper(Counter);

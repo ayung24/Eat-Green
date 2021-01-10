@@ -3,17 +3,10 @@ import { Link } from 'react-router-dom';
 import { db } from "../../firebase";
 import * as Constants from '../../Constants/Constants';
 import ProgressBar from "../../Components/ProgressBar/ProgressBar";
-import MeatSelect from '../MeatSelect/MeatSelect';
 import VegCard from "../../Components/Cards/VegCard";
 import FishCard from "../../Components/Cards/FishCard";
 import NutCard from "../../Components/Cards/NutCard";
 import SoyCard from "../../Components/Cards/SoyCard";
-
-const itemCount = window.$itemCount;
-
-const testData = [
-    { bgcolor: "#00695c", completed: 50 }
-];
 
 class VegSelect extends Component {
     constructor(props) {
@@ -22,7 +15,8 @@ class VegSelect extends Component {
             veg: [],
             fish: [],
             nuts: [],
-            dairySoy: []
+            dairySoy: [],
+            completed: 0
         };
     }
 
@@ -52,7 +46,62 @@ class VegSelect extends Component {
                 this.setState({ dairySoy: ds });
             });
     }
+
+    addFishProtein() {
+        let fishCount = 0;
+        var fishProteinVals = [];
+        this.state.fish.forEach(function(key) {
+          var fishProtein = Object.values(key)[0];
+          fishProteinVals.push(fishProtein);
+        });
+        if(localStorage.getItem("Salmon") > 0) {
+            fishCount = localStorage.getItem("Salmon")*fishProteinVals[0];
+        }
+        this.setState({completed: this.state.completed += fishCount});
+
+    }
+
+    addVegProtein() {
+        let vegCount = 0;
+        var vegProteinVals = [];
+        this.state.veg.forEach(function(key) {
+          var vegProtein = Object.values(key)[0];
+          vegProteinVals.push(vegProtein);
+        });
+        if(localStorage.getItem("Carrot") > 0) {
+            vegCount = localStorage.getItem("Carrot")*vegProteinVals[0];
+        }
+        this.setState({completed: this.state.completed += vegCount});
+    }
+
+    // addNutProtein() {
+    //     let nutCount = 0;
+    //     var nutProteinVals = [];
+    //     this.state.nut.forEach(function(key) {
+    //       var nutProtein = Object.values(key)[0];
+    //       nutProteinVals.push(nutProtein);
+    //     });
+    //     if(localStorage.getItem("Spinach") > 0) {
+    //         nutCount = localStorage.getItem("Spinach")*nutProteinVals[0];
+    //     }
+    // }
+
+    // addDSProtein() {
+    //     let dsCount = 0;
+    //     var dsProteinVals = [];
+    //     this.state.dairySoy.forEach(function(key) {
+    //       var dsProtein = Object.values(key)[0];
+    //       dsProteinVals.push(dsProtein);
+    //     });
+    //     if(localStorage.getItem("Spinach") > 0) {
+    //         dsCount = localStorage.getItem("Spinach")*dsProteinVals[0];
+    //     }
+    // }
     render() {
+        var testData = [
+            { bgcolor: "#00695c", completed: this.state.completed }
+        ]
+
         var vegCards = [];
         this.state.veg.forEach(function (key) {
             var vegName = Object.keys(key)[0];
@@ -86,6 +135,10 @@ class VegSelect extends Component {
                 <div>
                     <div>{localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL)}</div>
                 </div>
+                {testData.map((item, idx) => (
+                        <ProgressBar key={idx} bgcolor={item.bgcolor} completed={item.completed}>
+                        </ProgressBar>
+                    ))}
                 <div>
                     <div>
                         {fishCards}
