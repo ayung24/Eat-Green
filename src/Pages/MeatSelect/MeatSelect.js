@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { db } from "../../firebase";
-import MeatCard from "../../Components/MeatCard";
+import MeatCard from "../../Components/Cards/MeatCard";
 import Grid from '@material-ui/core/Grid';
 import PorkImage from "../../Assets/pork.png";
 import BeefImage from "../../Assets/steak.png";

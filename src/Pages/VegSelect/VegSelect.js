@@ -101,30 +101,6 @@ class VegSelect extends Component {
         this.setState({completed: this.state.completed + vegCount});
     }
 
-    // addNutProtein() {
-    //     let nutCount = 0;
-    //     var nutProteinVals = [];
-    //     this.state.nut.forEach(function(key) {
-    //       var nutProtein = Object.values(key)[0];
-    //       nutProteinVals.push(nutProtein);
-    //     });
-    //     if(localStorage.getItem("Spinach") > 0) {
-    //         nutCount = localStorage.getItem("Spinach")*nutProteinVals[0];
-    //     }
-    // }
-
-    // addDSProtein() {
-    //     let dsCount = 0;
-    //     var dsProteinVals = [];
-    //     this.state.dairySoy.forEach(function(key) {
-    //       var dsProtein = Object.values(key)[0];
-    //       dsProteinVals.push(dsProtein);
-    //     });
-    //     if(localStorage.getItem("Spinach") > 0) {
-    //         dsCount = localStorage.getItem("Spinach")*dsProteinVals[0];
-    //     }
-    // }
-
     onVeggieChanged(){
         var meatProtein = Number(localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL));
         var vegProtein = Number(localStorage.getItem(Constants.LOCAL_STORAGE_VEGGIE_TOTAL));

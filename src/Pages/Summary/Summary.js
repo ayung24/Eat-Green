@@ -139,7 +139,7 @@ class Summary extends Component {
                                                 <Paper style={{ backgroundColor: "#91e2b2", minHeight: 300, minWidth: 200}}>
                                                     <Typography noWrap aligncenter="true">
                                                         {selectedProteins.map(protein => (
-                                                            <li style={{ listStyleType: "none", textIndent: "3rem", marginTop: "20px"  }} key={protein}>{protein}</li>
+                                                            <li style={{ listStyleType: "none", textIndent: "3rem", marginTop: "6px"  }} key={protein}>{protein}</li>
                                                         ))}
                                                     </Typography>
                                                 </Paper>
@@ -158,7 +158,7 @@ class Summary extends Component {
                                             <Paper style={{ backgroundColor: "#91e2b2", minHeight: 300, minWidth: 200 }}>
                                                 <Typography noWrap aligncenter="true">
                                                     {selectedVeg.map(protein => (
-                                                        <li style={{ listStyleType: "none", textIndent: "3rem", marginTop: "20px" }} key={protein}>{protein}</li>
+                                                        <li style={{ listStyleType: "none", textIndent: "3rem", marginTop: "6px" }} key={protein}>{protein}</li>
                                                     ))}
                                                 </Typography>
                                             </Paper>
@@ -171,7 +171,7 @@ class Summary extends Component {
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                paddingTop: '200px',
+                                paddingTop: '300px',
                                 paddingLeft: '550px'
                             }}>
                                 <Grid container justify="center">

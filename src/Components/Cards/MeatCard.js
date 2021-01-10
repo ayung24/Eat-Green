@@ -9,10 +9,10 @@ import Avatar from '@material-ui/core/Avatar';
 import { red } from '@material-ui/core/colors';
 import Counter from "../Counter";
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
-    maxHeight: 400
   },
   media: {
     height: 0,
@@ -43,25 +43,26 @@ function MeatCardHooksWrapper(Component){
 
 class MeatCard extends Component {
   render() {
+    const cardName = this.props.name.charAt(0).toUpperCase() + this.props.name.slice(1)
     const protein = "Protein: " + String(this.props.protein) + " g";
 
     return (
+      
       <Card className={this.props.classes.root}>
         <CardHeader
           avatar={
             <Avatar aria-label="MeatCard" className={this.props.classes.avatar}>
-              {this.props.name.charAt(0)}
-            </Avatar>
+              {cardName.charAt(0)}
+          </Avatar>
           }
-          title= {this.props.name}
+          title= {cardName}
           subheader= {protein}
         />
         <CardMedia
           className={this.props.classes.media}
-          src={"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngitem.com%2Fmiddle%2FhJJmhT_transparent-background-burritos-png-png-download%2F&psig=AOvVaw24u-iKYuv5ll0k5Qj5ziU-&ust=1610323747560000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMjDr8qJkO4CFQAAAAAdAAAAABAD"}
-          title="Burrito"
+          image={this.props.image}
+          title={cardName}
         />
-
       <Counter {... this.props}/>
         <Collapse in={this.props.expanded} timeout="auto" unmountOnExit>
           <CardContent>
