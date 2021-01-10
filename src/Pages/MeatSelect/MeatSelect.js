@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { db } from "../../firebase";
-import Counter from "../../Components/Counter";
 import MeatCard from "../../Components/MeatCard";
 import Grid from '@material-ui/core/Grid';
 import PorkImage from "../../Assets/pork.png";
@@ -31,6 +30,17 @@ class MeatSelect extends Component {
       });
   }
 
+  getTotal() {
+    var proteinVals = [];
+    const protein = Object.keys(this.state.meatDishes);
+    const total = (Number(localStorage.getItem("Pork"))*proteinVals[0]) 
+    + (Number(localStorage.getItem("Beef"))*proteinVals[1]) 
+    + ( Number(localStorage.getItem("Chicken breast"))*proteinVals[2]) 
+    + (Number(localStorage.getItem("Hamburger"))*proteinVals[3]) 
+    + (Number(localStorage.getItem("Burrito"))*proteinVals[4]);
+    return localStorage.setItem("sum", total);
+  }
+
   render() {
     var meatImages = {
       Pork: PorkImage,
@@ -53,13 +63,12 @@ class MeatSelect extends Component {
 
     return (
       <div>
-
         <Grid container spacing={2}>
           {meatCards}
        </ Grid>
         <p>This is the meat select page</p>
         <Link to={Constants.ROUTE_VEG_SELECT}>
-          <button>Click here to continue to veggie selection...</button>
+          <button onClick={this.getTotal}>Click here to continue to veggie selection...</button>
         </Link>
       </div>
     )

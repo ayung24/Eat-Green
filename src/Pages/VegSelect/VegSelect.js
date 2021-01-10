@@ -3,7 +3,8 @@ import {Link} from 'react-router-dom';
 import { db } from "../../firebase";
 import * as Constants from '../../Constants/Constants';
 import ProgressBar from "../../Components/ProgressBar/ProgressBar";
-// import {arr} from '../MeatSelect';
+import MeatSelect from '../MeatSelect/MeatSelect';
+
 
 const itemCount = window.$itemCount;
 
@@ -56,6 +57,7 @@ class VegSelect extends Component {
         console.log(this.state);
         return (
             <div>
+                <div>{localStorage.getItem("sum")}</div>
                 <p>This is the veggie page</p>
                 <Link to={Constants.ROUTE_SUMMARY}>
                     <button>Click here to continue to summary page...</button>
