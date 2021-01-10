@@ -9,6 +9,9 @@ import Summary from './Pages/Summary/Summary';
 import * as Constant from './Constants/Constants';
 
 function App() {
+  // Clean local storage init
+  localStorage.clear();
+
   return (
     <Router>
       <div className="App">
