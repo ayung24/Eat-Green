@@ -10,9 +10,6 @@ import ChickenImage from "../../Assets/chicken.png";
 import BurritoImage from "../../Assets/burrito.png";
 import HamburgerImage from "../../Assets/burger.png";
 
-
-
-
 import * as Constants from '../../Constants/Constants';
 
 class MeatSelect extends Component {
@@ -36,16 +33,17 @@ class MeatSelect extends Component {
 
   render() {
     var meatImages = {
-      pork: PorkImage,
-      beef: BeefImage, 
-      chicken: ChickenImage,
+      Pork: PorkImage,
+      Beef: BeefImage, 
+      Chickenbreast: ChickenImage,
       Burrito: BurritoImage,
-      hamburger: HamburgerImage,
+      Hamburger: HamburgerImage,
     }; 
     var meatCards = [];
     this.state.meatDishes.forEach(function(key) {
-   
       var meatName = Object.keys(key)[0];
+      meatName = meatName.replace(/\s/g, '');
+      console.log(meatName);
       var ImageMeat = (meatImages)[meatName];
       console.log(ImageMeat);
       // console.log(Object.keys(key)[0]);

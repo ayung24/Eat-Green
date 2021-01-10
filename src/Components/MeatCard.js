@@ -69,20 +69,15 @@ class MeatCard extends Component {
               {cardName.charAt(0)}
           </Avatar>
           }
-<<<<<<< HEAD
           title= {cardName}
           subheader= {protein}
-=======
-          title={this.props.name}
-          subheader={protein}
->>>>>>> pictures
         />
         <CardMedia
           className={this.props.classes.media}
           // src = meatImages[this.props.class.name]
           // changes depending how i import pictures
           image={this.props.image}
-          title="Burrito"
+          title={cardName}
         />
         {/* <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
