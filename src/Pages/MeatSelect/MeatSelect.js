@@ -47,7 +47,7 @@ class MeatSelect extends Component {
     var meatImages = {
       Pork: PorkImage,
       Beef: BeefImage,
-      Chickenbreast: ChickenImage,
+      Chicken: ChickenImage,
       Burrito: BurritoImage,
       Hamburger: HamburgerImage,
     };
