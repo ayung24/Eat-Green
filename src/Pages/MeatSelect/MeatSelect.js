@@ -26,11 +26,17 @@ class MeatSelect extends Component {
   }
 
   render() {
-    console.log(this.state.meatDishes[0]);
+
+    var meatCards = [];
+    this.state.meatDishes.forEach(function(key) {
+      var meatName = Object.keys(key)[0];
+      meatCards.push(<MeatCard name={meatName}/>);
+    });
+
     return (
       <div>
         <div>
-          <MeatCard name={"null"} />
+          {meatCards}
           <Counter />
           <Counter />
         </div>
