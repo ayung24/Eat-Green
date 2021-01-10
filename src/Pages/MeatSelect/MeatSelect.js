@@ -30,7 +30,8 @@ class MeatSelect extends Component {
     var meatCards = [];
     this.state.meatDishes.forEach(function(key) {
       var meatName = Object.keys(key)[0];
-      meatCards.push(<MeatCard name={meatName}/>);
+      var meatProtein = Object.values(key)[0];
+      meatCards.push(<MeatCard name={meatName} protein={meatProtein}/>);
     });
 
     return (

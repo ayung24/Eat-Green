@@ -55,6 +55,9 @@ class MeatCard extends Component {
     // const handleExpandClick = () => {
     //   setExpanded(!expanded);
     // };
+    
+    // console.log(this.props.protein);
+    const protein = "Protein: " + String(this.props.protein) + " g";
 
     return (
       <Card className={this.props.classes.root}>
@@ -64,7 +67,8 @@ class MeatCard extends Component {
               B
           </Avatar>
           }
-          title={this.props.name}
+          title= {this.props.name}
+          subheader= {protein}
         />
         <CardMedia
           className={this.props.classes.media}
