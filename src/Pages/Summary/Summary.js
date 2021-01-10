@@ -69,7 +69,6 @@ class Summary extends Component {
     }
 
     render() {
-
         const selectedProteins = [];
         const selectedVeg = [];
         this.state.meatDishes.forEach(function (key) {
@@ -100,8 +99,14 @@ class Summary extends Component {
                 selectedVeg.push(vegQuantity + " x " + vegName);
             }
         });
+        this.state.dairySoy.forEach(function (key) {
+            var dsName = Object.keys(key)[0];
+            var dsQuantity = Number(localStorage.getItem(dsName));
+            if (Number(localStorage.getItem(dsName)) > 0) {
+                selectedVeg.push(dsQuantity + " x " + dsName);
+            }
+        });
         const totalVegProtein = Number(localStorage.getItem(Constants.LOCAL_STORAGE_VEGGIE_TOTAL));
-
         return (
             <ThemeProvider theme={theme}>
                 <CssBaseline />
@@ -111,7 +116,8 @@ class Summary extends Component {
                         alignItems: 'center',
                         justifyContent: 'center',
                         paddingTop: '100px',
-                        paddingLeft: '500px'
+                        paddingLeft: '500px',
+                        paddingBottom: '100px'
                     }}>
                         <Typography variant="h6">
                             Here is your meal completely in meat alternatives—enjoy!

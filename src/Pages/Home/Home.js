@@ -17,7 +17,7 @@ import Button from '@material-ui/core/Button';
                 <Grid item xs={6} style={{display:"flex",justifyContent:"center",align:"center",alignitems:"center",flexDirection:"column"}}>
                 
                 <Typography style={{paddingLeft:"50px"}} variant="h1" component="h2" justify="center" alignitems="center" >
-                 EatGreens!
+                 EatGreen!
                 </Typography>
                 <Grid item style={{paddingLeft:"50px"}}>
                 <h2>An application to help people learn how to transition to a Vegetarian diet.</h2> 
