@@ -7,7 +7,6 @@ import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox'
 import TextField from '@material-ui/core/TextField';
 import CardActions from '@material-ui/core/CardActions';
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
@@ -48,10 +47,14 @@ class Counter extends Component {
   }
 
   IncrementItem = () => {
-    this.setState({ count: this.state.count + 1 });
+    const newCount = this.state.count + 1;
+    this.setState({ count: newCount });
+    localStorage.setItem(this.props.name, newCount);
   }
   DecreaseItem = () => {
-    this.setState({ count: (this.state.count > 0) ? (this.state.count - 1) : 0 });
+    const newCount = (this.state.count > 0) ? (this.state.count - 1) : 0;
+    this.setState({ count: newCount });
+    localStorage.setItem(this.props.name, newCount);
   }
 
   render() {
@@ -66,6 +69,7 @@ class Counter extends Component {
         <IconButton aria-label="add to favorites">
           <IndeterminateCheckBoxIcon onClick={this.DecreaseItem} />
         </IconButton>
+        {this.StoreToGlobal}
       </CardActions>
     );
   }

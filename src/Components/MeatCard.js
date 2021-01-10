@@ -83,7 +83,7 @@ class MeatCard extends Component {
         </Typography>
       </CardContent> */}
 
-      <Counter/>
+      <Counter {... this.props}/>
         <Collapse in={this.props.expanded} timeout="auto" unmountOnExit>
           <CardContent>
           </CardContent>
