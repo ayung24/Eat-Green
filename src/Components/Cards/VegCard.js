@@ -1,23 +1,12 @@
 import React, { Component } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import { green, red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import AddBoxIcon from '@material-ui/icons/AddBox';
-import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox';
-import TextField from '@material-ui/core/TextField'
+import { green } from '@material-ui/core/colors';
 import Counter from "../Counter";
 
 const useStyles = makeStyles((theme) => ({
@@ -26,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
   media: {
     height: 0,
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '56.25%',
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -43,10 +32,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function MeatCardHooksWrapper(Component){
+function VegCardHooksWrapper(Component){
   return function WrappedComponent(props) {
     const classes = useStyles();
-    const [expanded, setExpanded] = React.useState(false);
+    const [expanded] = React.useState(false);
     return <Component {...props} classes={classes} expanded={expanded}/>
   }
 }
@@ -60,7 +49,7 @@ class VegCard extends Component {
         <CardHeader
           avatar={
             <Avatar aria-label="VegCard" className={this.props.classes.avatar}>
-              B
+              {this.props.name}
             </Avatar>
           }
           title= {this.props.name}
@@ -82,4 +71,4 @@ class VegCard extends Component {
   }
 }
 
-export default MeatCardHooksWrapper(VegCard);
+export default VegCardHooksWrapper(VegCard);

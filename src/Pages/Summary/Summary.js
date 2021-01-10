@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import { db } from "../../firebase";
-
 import * as Constants from '../../Constants/Constants';
 import Button from '@material-ui/core/Button';
 import HomeIcon from '@material-ui/icons/Home'
