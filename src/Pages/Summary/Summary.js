@@ -104,97 +104,108 @@ class Summary extends Component {
             }
         });
         const totalProtein = Number(localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL));
+        const totalVegProtein = Number(localStorage.getItem(Constants.LOCAL_STORAGE_VEGGIE_TOTAL));
 
         return (
             <ThemeProvider theme={theme}>
                 <CssBaseline />
-                <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    paddingTop: '100px'
-                }}>
-                    <Typography variant="h6">
-                        Here is your meal completely in meat alternatives—enjoy!
+                <Grid item xs={8} style={{display:"flex",align:"center",alignItems:"center",flexDirection:"column"}}>
+                    <div style={{
+                        display: 'fixed',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        paddingTop: '100px',
+                        paddingLeft: '500px'
+                    }}>
+                        <Typography variant="h6">
+                            Here is your meal completely in meat alternatives—enjoy!
                     </Typography>
-                </div>
-                <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    height: '80vh'
-                }}>
-                    <Grid>
-                        <div style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            height: '30vh'
-                        }}>
-                            <Grid container wrap="nowrap" spacing={2} justify="center">
-                                <Grid item>
-                                    <Grid container wrap="nowrap" item justify="center">
-                                        <Grid item >
-                                            <Paper style={{ minHeight: 300, minWidth: 200 }}>
-                                                <Typography noWrap aligncenter="true">
+                    </div>
+                    <div style={{
+                        display: 'fixed',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        height: '80vh'
+                    }}>
+                        <Grid container justify="center">
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                height: '30vh',
+                                paddingTop: '200px',
+                                paddingLeft: '450px'
+                            }}>
+                                <Grid container wrap="nowrap" spacing={2} justify="center">
+                                    <Grid item>
+                                        <Grid container wrap="nowrap" item justify="center">
+                                            <Grid item >
+                                                <Paper style={{ minHeight: 300, minWidth: 200 }}>
+                                                    <Typography noWrap aligncenter="true">
                                                         {selectedProteins.map(protein => (
                                                             <li style={{ listStyleType: "none", textIndent: "3rem" }} key={protein}>{protein}</li>
                                                         ))}
+                                                    </Typography>
+                                                </Paper>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                    <h3 style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        paddingLeft: '60px',
+                                        paddingRight: '50px'
+                                    }}>equates to</h3>
+                                    <Grid container wrap="nowrap" spacing={2} justify="center">
+                                        <Grid item>
+                                            <Paper style={{ minHeight: 300, minWidth: 200 }}>
+                                                <Typography noWrap aligncenter="true">
+                                                    {selectedVeg.map(protein => (
+                                                        <li style={{ listStyleType: "none", textIndent: "3rem" }} key={protein}>{protein}</li>
+                                                    ))}
                                                 </Typography>
                                             </Paper>
                                         </Grid>
                                     </Grid>
                                 </Grid>
-                                <h3 style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    paddingLeft: '50px'
-                                }}>equates to</h3>
-                                <Grid container wrap="nowrap" item justify="center">
-                                    <Grid item>
-                                        <Paper style={{ minHeight: 300, minWidth: 200 }}>
-                                            <Typography noWrap aligncenter="true">
-                                                    {selectedVeg.map(protein => (
-                                                        <li style={{ listStyleType: "none", textIndent: "3rem" }} key={protein}>{protein}</li>
-                                                    ))}
-                                            </Typography>
-                                        </Paper>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                        </div>
+                            </div>
 
-                        <div style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            padding: 100
-                        }}>
-                            <Typography variant="h6">
-                                Your total intake of protein from this meal is: {totalProtein} g!
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                paddingTop: '200px',
+                                paddingLeft: '550px'
+                            }}>
+                                <Grid container justify="center">
+                                    <Typography variant="h6">
+                                        Your total intake of protein from this meal is: {totalVegProtein} g!
                             </Typography>
-                        </div>
+                                    <div style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        height: '10vh',
+                                        paddingTop: '100px'
+                                    }}>
+                                        <Link to={Constants.ROUTE_HOME}>
+                                            <Button
 
-                        <div style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            height: '10vh'
-                        }}>
-                            <Link to={Constants.ROUTE_HOME}>
-                                <Button
-                                    endIcon={<HomeIcon />}
-                                    size="large"
-                                    variant="contained"
-                                    color="primary"
-                                    onClick={this.resetData.bind(this)}>
-                                    BACK TO HOME
+                                                endIcon={<HomeIcon />}
+                                                size="large"
+                                                variant="contained"
+                                                color="primary"
+                                                onClick={this.resetData.bind(this)}>
+                                                BACK TO HOME
                         </Button>
-                            </Link>
-                        </div>
-                    </Grid>
-                </div>
+                                        </Link>
+                                    </div>
+                                </Grid>
+                            </div>
+                        </Grid>
+                    </div>
+                </Grid>
             </ThemeProvider>
         )
     }
