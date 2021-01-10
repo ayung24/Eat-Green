@@ -67,7 +67,45 @@ class Summary extends Component{
               this.setState({ dairySoy: ds });
           });
       }
+
+      resetData() {
+          localStorage.clear();
+      }
+
     render(){
+
+        const selectedProteins = [];
+        const selectedVeg = [];
+        this.state.meatDishes.forEach(function (key) {
+            var meatName = Object.keys(key)[0];
+            var meatQuantity = Number(localStorage.getItem(meatName));
+            if (Number(localStorage.getItem(meatName)) > 0) {
+                selectedProteins.push(meatQuantity + " x " + meatName);
+            }
+        });
+        this.state.fish.forEach(function (key) {
+            var fishName = Object.keys(key)[0];
+            var fishQuantity = Number(localStorage.getItem(fishName));
+            if (Number(localStorage.getItem(fishName)) > 0) {
+                selectedVeg.push(fishQuantity + " x " + fishName);
+            }
+        });
+        this.state.nuts.forEach(function (key) {
+            var nutName = Object.keys(key)[0];
+            var nutQuantity = Number(localStorage.getItem(nutName));
+            if (Number(localStorage.getItem(nutName)) > 0) {
+                selectedVeg.push(nutQuantity + " x " + nutName);
+            }
+        });
+        this.state.veg.forEach(function (key) {
+            var vegName = Object.keys(key)[0];
+            var vegQuantity = Number(localStorage.getItem(vegName));
+            if (Number(localStorage.getItem(vegName)) > 0) {
+                selectedVeg.push(vegQuantity + " x " + vegName);
+            }
+        });
+        const totalProtein = Number(localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL));
+
         return(
             <ThemeProvider theme={theme}>
             <CssBaseline />
@@ -94,10 +132,40 @@ class Summary extends Component{
                     height: '30vh'}}>
                     <Grid container spacing = {5} justify = "center">
                         <Grid item>
-                            <Paper style = {{ height:300, width:200 }}></Paper>
+                            <Paper style = {{ height:300, width:200 }}>
+                            <Typography
+                                style={{
+                                fontWeight: "bold",
+                                color: "black",
+                                position: "absolute", // child
+                                bottom: 420, // position where you want
+                                left: 370
+                                }}>
+                                <ol>
+                                    {selectedProteins.map(protein => (
+                                    <li style={{"list-style-type": "none"}} key={protein}>{protein}</li>
+                                    ))}
+                                </ol>
+                            </Typography>
+                            </Paper>
                         </Grid>
                         <Grid item>
-                            <Paper style = {{ height:300, width:200 }}></Paper>
+                            <Paper style = {{ height:300, width:200 }}>
+                            <Typography
+                                style={{
+                                fontWeight: "bold",
+                                color: "black",
+                                position: "absolute", // child
+                                bottom: 420, // position where you want
+                                left: 600
+                                }}>
+                                <ol>
+                                    {selectedVeg.map(protein => (
+                                    <li style={{"list-style-type": "none"}} key={protein}>{protein}</li>
+                                    ))}
+                                </ol>
+                                </Typography>
+                            </Paper>
                         </Grid>
                     </Grid>
                 </div>
@@ -108,7 +176,7 @@ class Summary extends Component{
                     justifyContent: 'center',
                     padding: 50}}>
                     <Typography variant = "h6">
-                        Your total intake of protein from this meal is:
+                        Your total intake of protein from this meal is: {totalProtein} g!
                     </Typography>
                 </div>
 
@@ -122,7 +190,8 @@ class Summary extends Component{
                         endIcon={<HomeIcon />}
                         size="large"
                         variant="contained"
-                        color="primary">
+                        color="primary"
+                        onClick={this.resetData.bind(this)}>
                             BACK TO HOME
                         </Button>
                         </Link>
