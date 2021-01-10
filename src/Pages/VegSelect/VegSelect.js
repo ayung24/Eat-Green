@@ -28,7 +28,6 @@ import TofuImg from "../../Assets/tofu.png";
 import TomatoImg from "../../Assets/tomato.png";
 import TunaImg from "../../Assets/tuna.png";
 import WalnutsImg from "../../Assets/walnuts.png";
-import { Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 
 class VegSelect extends Component {
@@ -155,7 +154,6 @@ class VegSelect extends Component {
             var fishName = Object.keys(key)[0];
             var fishProtein = Object.values(key)[0];
             var fishImages = (FImages)[fishName];
-            console.log(fishImages);
             fishCards.push(
                 <Grid key={"fish-grid" + fishName} item>
                     <FishCard 
@@ -220,9 +218,7 @@ class VegSelect extends Component {
             <div>
                 <div>
                     <Grid container justify="center" key="veg-grid2">
-                        <Typography variant="h2" component="h2" >
-                        Pick the meat alternatives until you have reached the minimum target goal for protein!
-                        </Typography>
+                    <h1>Pick the meat alternatives until you have reached the minimum target goal for protein!</h1>
                     </Grid>
                 </div>
                 <div>
@@ -242,7 +238,7 @@ class VegSelect extends Component {
                     {testData.map((item, idx) => (
                         <ProgressBar key={idx} bgcolor={item.bgcolor} 
                             completed={!localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL) || 
-                            localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL) == 0        ? 
+                            localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL) === 0        ? 
                             100:item.completed}>
                         </ProgressBar>
                     ))}
@@ -255,7 +251,9 @@ class VegSelect extends Component {
                         </p>
                     </div>
                     <Link to={Constants.ROUTE_SUMMARY}>
-                    <Button variant="contained" color="primary"> NEXT -> </Button>
+                        <Grid justify="center" alignItems="center">
+                            <Button variant="contained" color="primary"> NEXT -> </Button>
+                        </Grid>
                     </Link>
                 </div>
             </div>

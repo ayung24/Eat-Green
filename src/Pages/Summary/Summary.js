@@ -15,9 +15,6 @@ const theme = createMuiTheme({
     palette: {
         primary: {
             main: green[900]
-        },
-        background: {
-            default: "#AED581"
         }
     }
 })
@@ -103,7 +100,6 @@ class Summary extends Component {
                 selectedVeg.push(vegQuantity + " x " + vegName);
             }
         });
-        const totalProtein = Number(localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL));
         const totalVegProtein = Number(localStorage.getItem(Constants.LOCAL_STORAGE_VEGGIE_TOTAL));
 
         return (

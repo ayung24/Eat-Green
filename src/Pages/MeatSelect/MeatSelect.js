@@ -9,7 +9,6 @@ import ChickenImage from "../../Assets/chicken.png";
 import BurritoImage from "../../Assets/burrito.png";
 import HamburgerImage from "../../Assets/burger.png";
 import * as Constants from '../../Constants/Constants';
-import { Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 
 class MeatSelect extends Component {
@@ -65,16 +64,13 @@ class MeatSelect extends Component {
       <div>
         <Grid item style={{display:"flex",align:"center",alignItems:"center",flexDirection:"column", paddingTop: "200px"}}>
           <Grid justify="center" alignitems="center" key="meat-grid2" container spacing={10}>
-            <Typography variant="h2" component="h2" justify="center" alignitems="center">
-              <h3>Select your meat choice!</h3>
-       </Typography>
+          <h1>Select your meat choice!</h1>
           </Grid>
-
-          <Grid justify="center" alignitems="center" container spacing={100}>
+          <Grid style={{paddingTop: "100px"}}justify="center" alignitems="center" container spacing={10}>
             {meatCards}
           </ Grid>
           <Link to={Constants.ROUTE_VEG_SELECT}>
-            <Button  variant="contained" color="primary" onClick={this.getTotal.bind(this)} > NEXT </Button>
+            <Button  style={{marginTop: "100px"}}variant="contained" color="primary" onClick={this.getTotal.bind(this)} > NEXT </Button>
           </Link>
         </Grid>
       </div>
