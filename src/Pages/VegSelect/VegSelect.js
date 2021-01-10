@@ -252,7 +252,7 @@ class VegSelect extends Component {
                         </p>
                         </div>
                     <Link to={Constants.ROUTE_SUMMARY}>
-                    <Button style={{marginBottom: "100px"}}variant="contained" color="primary"> NEXT -> </Button>
+                    <Button style={{marginBottom: "100px"}}variant="contained" color="primary"> NEXT </Button>
                     </Link>
                     </Grid>
                 </div>
