@@ -69,12 +69,19 @@ class MeatCard extends Component {
               {cardName.charAt(0)}
           </Avatar>
           }
+<<<<<<< HEAD
           title= {cardName}
           subheader= {protein}
+=======
+          title={this.props.name}
+          subheader={protein}
+>>>>>>> pictures
         />
         <CardMedia
           className={this.props.classes.media}
-          src={"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngitem.com%2Fmiddle%2FhJJmhT_transparent-background-burritos-png-png-download%2F&psig=AOvVaw24u-iKYuv5ll0k5Qj5ziU-&ust=1610323747560000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMjDr8qJkO4CFQAAAAAdAAAAABAD"}
+          // src = meatImages[this.props.class.name]
+          // changes depending how i import pictures
+          image={this.props.image}
           title="Burrito"
         />
         {/* <CardContent>
