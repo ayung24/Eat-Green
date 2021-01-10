@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { db } from "../../firebase";
 import * as Constants from '../../Constants/Constants';
 import Button from '@material-ui/core/Button';
@@ -22,56 +22,56 @@ const theme = createMuiTheme({
     }
 })
 
-class Summary extends Component{
+class Summary extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          meatDishes: [],
-          veg: [],
-          fish: [],
-          nuts: [],
-          dairySoy: []
+            meatDishes: [],
+            veg: [],
+            fish: [],
+            nuts: [],
+            dairySoy: []
         };
-      }
+    }
 
-      componentDidMount() {
+    componentDidMount() {
         db.collection("Meat")
-          .get()
-          .then(querySnapshot => {
-            const meat = querySnapshot.docs.map(doc => doc.data());
-            this.setState({ meatDishes: meat });
-          });
-          db.collection("Vegetables")
-          .get()
-          .then(querySnapshot => {
-              const veggies = querySnapshot.docs.map(doc => doc.data());
-              this.setState({ veg: veggies });
-          });
-          db.collection("Fish")
-          .get()
-          .then(querySnapshot => {
-              const fishie = querySnapshot.docs.map(doc => doc.data());
-              this.setState({ fish: fishie });
-          });
-          db.collection("Nuts")
-          .get()
-          .then(querySnapshot => {
-              const nut = querySnapshot.docs.map(doc => doc.data());
-              this.setState({ nuts: nut });
-          });
-          db.collection("dairySoy")
-          .get()
-          .then(querySnapshot => {
-              const ds = querySnapshot.docs.map(doc => doc.data());
-              this.setState({ dairySoy: ds });
-          });
-      }
+            .get()
+            .then(querySnapshot => {
+                const meat = querySnapshot.docs.map(doc => doc.data());
+                this.setState({ meatDishes: meat });
+            });
+        db.collection("Vegetables")
+            .get()
+            .then(querySnapshot => {
+                const veggies = querySnapshot.docs.map(doc => doc.data());
+                this.setState({ veg: veggies });
+            });
+        db.collection("Fish")
+            .get()
+            .then(querySnapshot => {
+                const fishie = querySnapshot.docs.map(doc => doc.data());
+                this.setState({ fish: fishie });
+            });
+        db.collection("Nuts")
+            .get()
+            .then(querySnapshot => {
+                const nut = querySnapshot.docs.map(doc => doc.data());
+                this.setState({ nuts: nut });
+            });
+        db.collection("dairySoy")
+            .get()
+            .then(querySnapshot => {
+                const ds = querySnapshot.docs.map(doc => doc.data());
+                this.setState({ dairySoy: ds });
+            });
+    }
 
-      resetData() {
-          localStorage.clear();
-      }
+    resetData() {
+        localStorage.clear();
+    }
 
-    render(){
+    render() {
 
         const selectedProteins = [];
         const selectedVeg = [];
@@ -105,102 +105,96 @@ class Summary extends Component{
         });
         const totalProtein = Number(localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL));
 
-        return(
+        return (
             <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '100vh'}}>
-                <Grid>
+                <CssBaseline />
                 <div style={{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    padding: 50}}>
-                    <Typography variant = "h6">
+                    paddingTop: '100px'
+                }}>
+                    <Typography variant="h6">
                         Here is your meal completely in meat alternatives—enjoy!
                     </Typography>
                 </div>
-
                 <div style={{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    height: '30vh'}}>
-                    <Grid container spacing = {5} justify = "center">
-                        <Grid item>
-                            <Paper style = {{ height:300, width:200 }}>
-                            <Typography
-                                style={{
-                                fontWeight: "bold",
-                                color: "black",
-                                paddingTop: "80px",
-                                paddingLeft: "10px",
-                                position: "flex", // child
-                                bottom: 420, // position where you want
-                                left: 370
-                                }}>
-                                <ol>
-                                    {selectedProteins.map(protein => (
-                                    <li style={{"list-style-type": "none"}} key={protein}>{protein}</li>
-                                    ))}
-                                </ol>
+                    height: '80vh'
+                }}>
+                    <Grid>
+                        <div style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            height: '30vh'
+                        }}>
+                            <Grid container wrap="nowrap" spacing={2} justify="center">
+                                <Grid item>
+                                    <Grid container wrap="nowrap" item justify="center">
+                                        <Grid item >
+                                            <Paper style={{ minHeight: 300, minWidth: 200 }}>
+                                                <Typography noWrap aligncenter="true">
+                                                        {selectedProteins.map(protein => (
+                                                            <li style={{ listStyleType: "none", textIndent: "3rem" }} key={protein}>{protein}</li>
+                                                        ))}
+                                                </Typography>
+                                            </Paper>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                                <h3 style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    paddingLeft: '50px'
+                                }}>equates to</h3>
+                                <Grid container wrap="nowrap" item justify="center">
+                                    <Grid item>
+                                        <Paper style={{ minHeight: 300, minWidth: 200 }}>
+                                            <Typography noWrap aligncenter="true">
+                                                    {selectedVeg.map(protein => (
+                                                        <li style={{ listStyleType: "none", textIndent: "3rem" }} key={protein}>{protein}</li>
+                                                    ))}
+                                            </Typography>
+                                        </Paper>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </div>
+
+                        <div style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            padding: 100
+                        }}>
+                            <Typography variant="h6">
+                                Your total intake of protein from this meal is: {totalProtein} g!
                             </Typography>
-                            </Paper>
-                        </Grid>
-                        <Grid item>
-                            <Paper style = {{ height:300, width:200 }}>
-                            <Typography
-                                style={{
-                                fontWeight: "bold",
-                                color: "black",
-                                paddingTop: "80px",
-                                paddingLeft: "10px",
-                                position: "flex", // child
-                                bottom: 420, // position where you want
-                                left: 600
-                                }}>
-                                <ol>
-                                    {selectedVeg.map(protein => (
-                                    <li style={{"list-style-type": "none"}} key={protein}>{protein}</li>
-                                    ))}
-                                </ol>
-                                </Typography>
-                            </Paper>
-                        </Grid>
+                        </div>
+
+                        <div style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            height: '10vh'
+                        }}>
+                            <Link to={Constants.ROUTE_HOME}>
+                                <Button
+                                    endIcon={<HomeIcon />}
+                                    size="large"
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={this.resetData.bind(this)}>
+                                    BACK TO HOME
+                        </Button>
+                            </Link>
+                        </div>
                     </Grid>
                 </div>
-
-                <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    padding: 50}}>
-                    <Typography variant = "h6">
-                        Your total intake of protein from this meal is: {totalProtein} g!
-                    </Typography>
-                </div>
-
-                <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    height: '10vh'}}>
-                        <Link to={Constants.ROUTE_HOME}>
-                        <Button
-                        endIcon={<HomeIcon />}
-                        size="large"
-                        variant="contained"
-                        color="primary"
-                        onClick={this.resetData.bind(this)}>
-                            BACK TO HOME
-                        </Button>
-                        </Link>
-                </div>
-                </Grid>
-            </div>
             </ThemeProvider>
         )
     }

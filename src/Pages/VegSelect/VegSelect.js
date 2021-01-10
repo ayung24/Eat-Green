@@ -138,8 +138,7 @@ class VegSelect extends Component {
             var fishName = Object.keys(key)[0];
             var fishProtein = Object.values(key)[0];
             var fishImages = (FImages)[fishName];
-            console.log(fishImages);
-            fishCards.push(<Grid item><FishCard key={"fish-" + fishName} cardType={Constants.CARD_VEGGIE} name={fishName} image={fishImages} protein={fishProtein} /></Grid>);
+            fishCards.push(<Grid key={"fish-grid" + fishName} item><FishCard key={"fish-" + fishName} cardType={Constants.CARD_VEGGIE} name={fishName} image={fishImages} protein={fishProtein} /></Grid>);
         });
 
         var vegCards = [];
@@ -160,7 +159,7 @@ class VegSelect extends Component {
             vegName = vegName.replace(/\s/g, '');
             var vegProtein = Object.values(key)[0];
             var vegSource = (vegImages)[vegName];
-            vegCards.push(<Grid item><VegCard key={"veg-" + vegName} name={vegName} image={vegSource} protein={vegProtein} cardType={Constants.CARD_VEGGIE}/></Grid>);
+            vegCards.push(<Grid key={"veg-grid" + vegName} item><VegCard key={"veg-" + vegName} name={vegName} image={vegSource} protein={vegProtein} cardType={Constants.CARD_VEGGIE}/></Grid>);
         });
 
        
@@ -177,7 +176,7 @@ class VegSelect extends Component {
             var nutName = Object.keys(key)[0];
             var nutProtein = Object.values(key)[0];
             var nutSource = (nutImages)[nutName];
-            nutCards.push(<Grid item><NutCard key={"nut-"+ nutName} image={nutSource} name={nutName} protein={nutProtein} cardType={Constants.CARD_VEGGIE}/></Grid>);
+            nutCards.push(<Grid key={"nut-grid" + nutName} item><NutCard key={"nut-"+ nutName} image={nutSource} name={nutName} protein={nutProtein} cardType={Constants.CARD_VEGGIE}/></Grid>);
         });
 
         var dairySoyCards = [];
@@ -189,7 +188,7 @@ class VegSelect extends Component {
             var soyName = Object.keys(key)[0];
             var soyProtein = Object.values(key)[0];
             var soySource = (soyImages)[soyName];
-            dairySoyCards.push(<Grid item><SoyCard key={"soy-" + soyName} image={soySource} name={soyName} protein={soyProtein} cardType={Constants.CARD_VEGGIE}/></Grid>);
+            dairySoyCards.push(<Grid key={"soy-grid" + soyName} item><SoyCard key={"soy-" + soyName} image={soySource} name={soyName} protein={soyProtein} cardType={Constants.CARD_VEGGIE}/></Grid>);
         });
 
         return (
@@ -204,23 +203,19 @@ class VegSelect extends Component {
                         </p>
                     </div>
                   
-                    <Grid justify="center" >
+                    <Grid container justify="center" key="veg-grid2">
                         <Typography variant="h2" component="h2" >
                         Pick the meat alternatives until you have reached the minimum target goal for protein!
                         </Typography>
                     </Grid>
                 </div>
-                {testData.map((item, idx) => (
-                        <ProgressBar key={idx} bgcolor={item.bgcolor} completed={item.completed}>
-                        </ProgressBar>
-                    ))}
                 <div>
-                    <Grid justify="center" alignItems="center" container spacing={2}>
+                    <Grid justify="center" alignItems="center" key="veg-grid3" container spacing={2}>
                         {fishCards}
                     </Grid>
 
 
-                    <Grid justify="center" alignItems="center" container spacing={2}>
+                    <Grid justify="center" alignItems="center" key="veg-grid4" container spacing={2}>
                         {vegCards}
 
                         {nutCards}
@@ -229,7 +224,7 @@ class VegSelect extends Component {
                     </Grid>
                     {/* <p>This is the veggie page</p> */}
                     <Link to={Constants.ROUTE_SUMMARY}>
-                        <button variant="contained" color="secondary"> NEXT -> </button>
+                        <button variant="contained" color="secondary"> NEXT </button>
                     </Link>
 
                     {testData.map((item, idx) => (

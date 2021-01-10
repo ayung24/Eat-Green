@@ -10,7 +10,6 @@ import BurritoImage from "../../Assets/burrito.png";
 import HamburgerImage from "../../Assets/burger.png";
 import * as Constants from '../../Constants/Constants';
 import { Typography } from '@material-ui/core';
-import SaveIcon from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
 
 class MeatSelect extends Component {
@@ -59,26 +58,26 @@ class MeatSelect extends Component {
       meatName = meatName.replace(/\s/g, '');
       var ImageMeat = (meatImages)[meatName];
       var meatProtein = Object.values(key)[0];
-      meatCards.push(<Grid key={"meat-grid" + meatName}alignItems="center" item><MeatCard key={"meat-" + meatName} name={meatName} image={ImageMeat} protein={meatProtein} cardType={Constants.CARD_MEAT}/></Grid>);
+      meatCards.push(<Grid key={"meat-grid" + meatName}alignitems="center" item><MeatCard key={"meat-" + meatName} name={meatName} image={ImageMeat} protein={meatProtein} cardType={Constants.CARD_MEAT}/></Grid>);
     });
 
     return (
       <div>
       
-        <Grid justify="center" alignItems="center" key="meat-grid2" container spacing={2}>
-          <Typography variant="h2" component="h2" justify="center" alignItems="center">
+        <Grid justify="center" alignitems="center" key="meat-grid2" container spacing={2}>
+          <Typography variant="h2" component="h2" justify="center" alignitems="center">
             Select your meat choice!
        </Typography>
         </Grid>
 
-        <Grid justify="center" alignItems="center" container spacing={2}>
+        <Grid justify="center" alignitems="center" container spacing={2}>
 
 
           {meatCards}
 
         </ Grid>
         <Link to={Constants.ROUTE_VEG_SELECT}>
-          <Button  onClick={this.getTotal.bind(this)} > Next -> </Button>
+          <Button  onClick={this.getTotal.bind(this)} > NEXT </Button>
         </Link>
     
       </div>
