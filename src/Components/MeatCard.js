@@ -57,7 +57,6 @@ class MeatCard extends Component {
     //   setExpanded(!expanded);
     // };
     
-    // console.log(this.props.protein);
     const cardName = this.props.name.charAt(0).toUpperCase() + this.props.name.slice(1)
     const protein = "Protein: " + String(this.props.protein) + " g";
 
