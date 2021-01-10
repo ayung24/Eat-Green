@@ -2,6 +2,25 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import { db } from "../../firebase";
 import * as Constants from '../../Constants/Constants';
+import Button from '@material-ui/core/Button';
+import HomeIcon from '@material-ui/icons/Home'
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import { green } from '@material-ui/core/colors';
+import CssBaseline from "@material-ui/core/CssBaseline";
+
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            main: green[900]
+        },
+        background: {
+            default: "#AED581"
+        }
+    }
+})
 
 class Summary extends Component{
     constructor(props) {
@@ -47,8 +66,15 @@ class Summary extends Component{
               this.setState({ dairySoy: ds });
           });
       }
+
+      resetData() {
+          localStorage.clear();
+      }
+
     render(){
+
         const selectedProteins = [];
+        const selectedVeg = [];
         this.state.meatDishes.forEach(function (key) {
             var meatName = Object.keys(key)[0];
             var meatQuantity = Number(localStorage.getItem(meatName));
@@ -60,38 +86,118 @@ class Summary extends Component{
             var fishName = Object.keys(key)[0];
             var fishQuantity = Number(localStorage.getItem(fishName));
             if (Number(localStorage.getItem(fishName)) > 0) {
-                selectedProteins.push(fishQuantity + " x " + fishName);
+                selectedVeg.push(fishQuantity + " x " + fishName);
             }
         });
         this.state.nuts.forEach(function (key) {
             var nutName = Object.keys(key)[0];
             var nutQuantity = Number(localStorage.getItem(nutName));
             if (Number(localStorage.getItem(nutName)) > 0) {
-                selectedProteins.push(nutQuantity + " x " + nutName);
+                selectedVeg.push(nutQuantity + " x " + nutName);
             }
         });
         this.state.veg.forEach(function (key) {
             var vegName = Object.keys(key)[0];
             var vegQuantity = Number(localStorage.getItem(vegName));
             if (Number(localStorage.getItem(vegName)) > 0) {
-                selectedProteins.push(vegQuantity + " x " + vegName);
+                selectedVeg.push(vegQuantity + " x " + vegName);
             }
         });
         const totalProtein = Number(localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL));
-        console.log(selectedProteins);
+
         return(
-            <div>
-                <span>Total Protein: {totalProtein}</span>
-                <ol>
-                    {selectedProteins.map(protein => (
-                        <li style={{"list-style-type": "none"}} key={protein}>{protein}</li>
-                    ))}
-                </ol>
-                <p>This is the summary page</p>
-                <Link to={Constants.ROUTE_HOME}>
-                    <button>Click here to continue to go back to home page...</button>
-                </Link>
+            <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '100vh'}}>
+                <Grid>
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: 50}}>
+                    <Typography variant = "h6">
+                        Here is your meal completely in meat alternatives—enjoy!
+                    </Typography>
+                </div>
+
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    height: '30vh'}}>
+                    <Grid container spacing = {5} justify = "center">
+                        <Grid item>
+                            <Paper style = {{ height:300, width:200 }}>
+                            <Typography
+                                style={{
+                                fontWeight: "bold",
+                                color: "black",
+                                position: "absolute", // child
+                                bottom: 420, // position where you want
+                                left: 370
+                                }}>
+                                <ol>
+                                    {selectedProteins.map(protein => (
+                                    <li style={{"list-style-type": "none"}} key={protein}>{protein}</li>
+                                    ))}
+                                </ol>
+                            </Typography>
+                            </Paper>
+                        </Grid>
+                        <Grid item>
+                            <Paper style = {{ height:300, width:200 }}>
+                            <Typography
+                                style={{
+                                fontWeight: "bold",
+                                color: "black",
+                                position: "absolute", // child
+                                bottom: 420, // position where you want
+                                left: 600
+                                }}>
+                                <ol>
+                                    {selectedVeg.map(protein => (
+                                    <li style={{"list-style-type": "none"}} key={protein}>{protein}</li>
+                                    ))}
+                                </ol>
+                                </Typography>
+                            </Paper>
+                        </Grid>
+                    </Grid>
+                </div>
+
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: 50}}>
+                    <Typography variant = "h6">
+                        Your total intake of protein from this meal is: {totalProtein} g!
+                    </Typography>
+                </div>
+
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    height: '10vh'}}>
+                        <Link to={Constants.ROUTE_HOME}>
+                        <Button
+                        endIcon={<HomeIcon />}
+                        size="large"
+                        variant="contained"
+                        color="primary"
+                        onClick={this.resetData.bind(this)}>
+                            BACK TO HOME
+                        </Button>
+                        </Link>
+                </div>
+                </Grid>
             </div>
+            </ThemeProvider>
         )
     }
 }
