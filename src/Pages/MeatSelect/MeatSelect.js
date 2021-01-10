@@ -56,12 +56,12 @@ class MeatSelect extends Component {
       meatName = meatName.replace(/\s/g, '');
       var ImageMeat = (meatImages)[meatName];
       var meatProtein = Object.values(key)[0];
-      meatCards.push(<Grid item><MeatCard name={meatName} image={ImageMeat} protein={meatProtein}/></Grid>);
+      meatCards.push(<Grid key={"meat-grid" + meatName} item><MeatCard key={"meat-" + meatName} name={meatName} image={ImageMeat} protein={meatProtein}/></Grid>);
     });
 
     return (
       <div>
-        <Grid container spacing={2}>
+        <Grid key="meat-grid2"container spacing={2}>
           {meatCards}
        </ Grid>
         <p>This is the meat select page</p>

@@ -57,7 +57,7 @@ class VegSelect extends Component {
         if(localStorage.getItem("Salmon") > 0) {
             fishCount = localStorage.getItem("Salmon")*fishProteinVals[0];
         }
-        this.setState({completed: this.state.completed += fishCount});
+        this.setState({completed: this.state.completed + fishCount});
 
     }
 
@@ -71,7 +71,7 @@ class VegSelect extends Component {
         if(localStorage.getItem("Carrot") > 0) {
             vegCount = localStorage.getItem("Carrot")*vegProteinVals[0];
         }
-        this.setState({completed: this.state.completed += vegCount});
+        this.setState({completed: this.state.completed + vegCount});
     }
 
     // addNutProtein() {
@@ -106,28 +106,28 @@ class VegSelect extends Component {
         this.state.veg.forEach(function (key) {
             var vegName = Object.keys(key)[0];
             var vegProtein = Object.values(key)[0];
-            vegCards.push(<VegCard name={vegName} protein={vegProtein} />);
+            vegCards.push(<VegCard key={"veg-" + vegName}name={vegName} protein={vegProtein} />);
         });
 
         var fishCards = [];
         this.state.fish.forEach(function (key) {
             var fishName = Object.keys(key)[0];
             var fishProtein = Object.values(key)[0];
-            fishCards.push(<FishCard name={fishName} protein={fishProtein} />);
+            fishCards.push(<FishCard key={"fish-" + fishName} name={fishName} protein={fishProtein} />);
         });
 
         var nutCards = [];
         this.state.nuts.forEach(function (key) {
             var nutName = Object.keys(key)[0];
             var nutProtein = Object.values(key)[0];
-            nutCards.push(<NutCard name={nutName} protein={nutProtein} />);
+            nutCards.push(<NutCard key={"nut-"+ nutName} name={nutName} protein={nutProtein} />);
         });
 
         var dairySoyCards = [];
         this.state.dairySoy.forEach(function (key) {
             var soyName = Object.keys(key)[0];
             var soyProtein = Object.values(key)[0];
-            dairySoyCards.push(<SoyCard name={soyName} protein={soyProtein} />);
+            dairySoyCards.push(<SoyCard key={"soy-" + soyName} name={soyName} protein={soyProtein} />);
         });
 
         return (
