@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { db } from "../../firebase";
-import Counter from "../../Components/Counter";
 import MeatCard from "../../Components/MeatCard";
 
 
@@ -36,9 +35,7 @@ class MeatSelect extends Component {
     return (
       <div>
         <div>
-          {meatCards}
-          <Counter />
-          <Counter />
+          <MeatCard name={"null"} />
         </div>
         <p>This is the meat select page</p>
         <Link to={Constants.ROUTE_VEG_SELECT}>
