@@ -53,6 +53,7 @@ class VegSelect extends Component {
             });
     }
     render() {
+        console.log(this.state);
         return (
             <div>
                 <p>This is the veggie page</p>

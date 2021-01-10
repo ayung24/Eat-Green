@@ -58,6 +58,7 @@ class MeatCard extends Component {
     // };
     
     // console.log(this.props.protein);
+    const cardName = this.props.name.charAt(0).toUpperCase() + this.props.name.slice(1)
     const protein = "Protein: " + String(this.props.protein) + " g";
 
     return (
@@ -65,10 +66,10 @@ class MeatCard extends Component {
         <CardHeader
           avatar={
             <Avatar aria-label="MeatCard" className={this.props.classes.avatar}>
-              B
+              {cardName.charAt(0)}
           </Avatar>
           }
-          title= {this.props.name}
+          title= {cardName}
           subheader= {protein}
         />
         <CardMedia
