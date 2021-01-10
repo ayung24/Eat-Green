@@ -216,7 +216,11 @@ class VegSelect extends Component {
         return (
             <div>
                 <div>
-                    <div>
+                    <Grid container justify="center" key="veg-grid2">
+                        <Typography variant="h2" component="h2" >
+                        Pick the meat alternatives until you have reached the minimum target goal for protein!
+                        </Typography>
+                        <div>
                         <p>
                         MEAT PROTEIN: {localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL) ? localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL) : 0} g
                         </p>
@@ -224,11 +228,6 @@ class VegSelect extends Component {
                         VEGGIE PROTEIN: {this.state.totalVegProtein} g
                         </p>
                     </div>
-                  
-                    <Grid container justify="center" key="veg-grid2">
-                        <Typography variant="h2" component="h2" >
-                        Pick the meat alternatives until you have reached the minimum target goal for protein!
-                        </Typography>
                     </Grid>
                 </div>
                 <div>

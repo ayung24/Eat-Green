@@ -63,23 +63,20 @@ class MeatSelect extends Component {
 
     return (
       <div>
-      
-        <Grid justify="center" alignitems="center" key="meat-grid2" container spacing={2}>
-          <Typography variant="h2" component="h2" justify="center" alignitems="center">
-            Select your meat choice!
+        <Grid item style={{display:"flex",align:"center",alignItems:"center",flexDirection:"column", paddingTop: "200px"}}>
+          <Grid justify="center" alignitems="center" key="meat-grid2" container spacing={100}>
+            <Typography variant="h2" component="h2" justify="center" alignitems="center">
+              <h3>Select your meat choice!</h3>
        </Typography>
+          </Grid>
+
+          <Grid justify="center" alignitems="center" container spacing={100}>
+            {meatCards}
+          </ Grid>
+          <Link to={Constants.ROUTE_VEG_SELECT}>
+            <Button style={{paddingTop: '100px'}} onClick={this.getTotal.bind(this)} > NEXT </Button>
+          </Link>
         </Grid>
-
-        <Grid justify="center" alignitems="center" container spacing={2}>
-
-
-          {meatCards}
-
-        </ Grid>
-        <Link to={Constants.ROUTE_VEG_SELECT}>
-          <Button  onClick={this.getTotal.bind(this)} > NEXT </Button>
-        </Link>
-    
       </div>
     )
   }
