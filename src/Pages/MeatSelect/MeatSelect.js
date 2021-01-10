@@ -1,102 +1,46 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import RecipeReviewCard from '../../Components/Meat/Meat.js'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { db } from "../../firebase";
+import Counter from "../../Components/Counter";
+import MeatCard from "../../Components/MeatCard";
+
 
 import * as Constants from '../../Constants/Constants';
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-      flexGrow: 1,
-    },
-    paper: {
-      padding: theme.spacing(2),
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
-    },
-  }));
 
 class MeatSelect extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        meatDishes: []
+      meatDishes: []
     };
   }
 
   componentDidMount() {
     db.collection("Meat")
-        .get()
-        .then(querySnapshot => {
-            const data = querySnapshot.docs.map(doc => doc.data());
-            console.log(data);
-            this.setState({ meatDishes: data });
-        });
+      .get()
+      .then(querySnapshot => {
+        const data = querySnapshot.docs.map(doc => doc.data());
+        console.log(data);
+        this.setState({ meatDishes: data });
+      });
   }
-  
-  render(){
-  const classes = useStyles();
-  var y = 10;
 
-  return (
-    <div className={classes.root}>
-      <Grid container spacing={3}>
-        <Grid item xs={12} container>
-        </Grid>
-        <Grid item xs={12} container>
-        </Grid>
-        <Grid item xs={12} container>
-        </Grid>
-        <Grid item xs={4}>
-        </Grid>
-        <Grid item xs={4}>
-          <Paper className={classes.paper}> Select Your Meat Dish! </Paper>
-        </Grid>
-        <Grid item xs={4}>
-        </Grid>
-        <Grid item xs={3}>
-        <RecipeReviewCard> </RecipeReviewCard>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
-        </Grid>
-        <Grid item xs={4}>
-        </Grid>
-        <Grid item xs={4}>
-          <Paper className={classes.paper}> Total Protein: {y} </Paper>
-        </Grid>
-        <Grid item xs={4}>
-        </Grid>
-        <Grid item xs={4}>
-        </Grid>
-        <Grid container item xs={4}>
-          <Button variant="contained" color="primary">
-          Next 
-          </Button>
-        </Grid>
-        <Grid item xs={4}>
-        </Grid>
-      </Grid>
+  render() {
+
+    return (
+      <div>
         <div>
-          <Counter/>
-          <Counter/>
+          <MeatCard/>
+          <Counter />
+          <Counter />
         </div>
-      <p>This is the meat select page</p>
-      <Link to={Constants.ROUTE_VEG_SELECT}>
+        <p>This is the meat select page</p>
+        <Link to={Constants.ROUTE_VEG_SELECT}>
           <button>Click here to continue to veggie selection...</button>
-      </Link>
-    </div>
-  )
-}
+        </Link>
+      </div>
+    )
+  }
 }
 
 export default MeatSelect;

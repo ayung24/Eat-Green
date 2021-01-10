@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import { db } from "../../firebase";
 import * as Constants from '../../Constants/Constants';
+import ProgressBar from "../../Components/ProgressBar/ProgressBar";
 // import {arr} from '../MeatSelect';
 
 const testData = [
