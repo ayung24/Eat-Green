@@ -242,19 +242,19 @@ class VegSelect extends Component {
                             100:item.completed}>
                         </ProgressBar>
                     ))}
-                    <div>
-                        <p>
-                        MEAT PROTEIN: {localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL) ? localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL) : 0} g
+                    <Grid item style={{ display: "flex", align: "center", alignItems: "center", flexDirection: "column" }}>
+                        <div>
+                            <p>
+                                MEAT PROTEIN: {localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL) ? localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL) : 0} g
                         </p>
-                        <p>
-                        VEGGIE PROTEIN: {this.state.totalVegProtein} g
+                            <p>
+                                VEGGIE PROTEIN: {this.state.totalVegProtein} g
                         </p>
-                    </div>
+                        </div>
                     <Link to={Constants.ROUTE_SUMMARY}>
-                        <Grid justify="center" alignItems="center">
-                            <Button variant="contained" color="primary"> NEXT -> </Button>
-                        </Grid>
+                    <Button style={{marginBottom: "100px"}}variant="contained" color="primary"> NEXT -> </Button>
                     </Link>
+                    </Grid>
                 </div>
             </div>
         )
