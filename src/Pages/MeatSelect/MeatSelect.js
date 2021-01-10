@@ -56,7 +56,7 @@ class MeatSelect extends Component {
       meatName = meatName.replace(/\s/g, '');
       var ImageMeat = (meatImages)[meatName];
       var meatProtein = Object.values(key)[0];
-      meatCards.push(<Grid key={"meat-grid" + meatName} item><MeatCard key={"meat-" + meatName} name={meatName} image={ImageMeat} protein={meatProtein}/></Grid>);
+      meatCards.push(<Grid key={"meat-grid" + meatName} item><MeatCard key={"meat-" + meatName} name={meatName} image={ImageMeat} protein={meatProtein} cardType={Constants.CARD_MEAT}/></Grid>);
     });
 
     return (

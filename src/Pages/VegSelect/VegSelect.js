@@ -97,6 +97,7 @@ class VegSelect extends Component {
     //         dsCount = localStorage.getItem("Spinach")*dsProteinVals[0];
     //     }
     // }
+
     render() {
         var testData = [
             { bgcolor: "#00695c", completed: this.state.completed }
@@ -106,34 +107,41 @@ class VegSelect extends Component {
         this.state.veg.forEach(function (key) {
             var vegName = Object.keys(key)[0];
             var vegProtein = Object.values(key)[0];
-            vegCards.push(<VegCard key={"veg-" + vegName}name={vegName} protein={vegProtein} />);
+            vegCards.push(<VegCard key={"veg-" + vegName} name={vegName} protein={vegProtein} cardType={Constants.CARD_VEGGIE}/>);
         });
 
         var fishCards = [];
         this.state.fish.forEach(function (key) {
             var fishName = Object.keys(key)[0];
             var fishProtein = Object.values(key)[0];
-            fishCards.push(<FishCard key={"fish-" + fishName} name={fishName} protein={fishProtein} />);
+            fishCards.push(<FishCard key={"fish-" + fishName} name={fishName} protein={fishProtein} cardType={Constants.CARD_VEGGIE}/>);
         });
 
         var nutCards = [];
         this.state.nuts.forEach(function (key) {
             var nutName = Object.keys(key)[0];
             var nutProtein = Object.values(key)[0];
-            nutCards.push(<NutCard key={"nut-"+ nutName} name={nutName} protein={nutProtein} />);
+            nutCards.push(<NutCard key={"nut-"+ nutName} name={nutName} protein={nutProtein} cardType={Constants.CARD_VEGGIE}/>);
         });
 
         var dairySoyCards = [];
         this.state.dairySoy.forEach(function (key) {
             var soyName = Object.keys(key)[0];
             var soyProtein = Object.values(key)[0];
-            dairySoyCards.push(<SoyCard key={"soy-" + soyName} name={soyName} protein={soyProtein} />);
+            dairySoyCards.push(<SoyCard key={"soy-" + soyName} name={soyName} protein={soyProtein} cardType={Constants.CARD_VEGGIE}/>);
         });
 
         return (
             <div>
                 <div>
-                    <div>{localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL)}</div>
+                    <div>
+                        <p>
+                        MEAT PROTEIN: {localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL) ? localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL) : 0} g
+                        </p>
+                        <p>
+                        VEGGIE PROTEIN: {localStorage.getItem(Constants.LOCAL_STORAGE_VEGGIE_TOTAL) ? localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL) : 0} g
+                        </p>
+                    </div>
                 </div>
                 {testData.map((item, idx) => (
                         <ProgressBar key={idx} bgcolor={item.bgcolor} completed={item.completed}>

@@ -10,4 +10,11 @@ export const LOCAL_STORAGE_BEEF = "Beef";
 export const LOCAL_STORAGE_CHICKEN_BREAST = "Chickenbreast";
 export const LOCAL_STORAGE_HAMBURGER = "Hamburger";
 export const LOCAL_STORAGE_BURRITO = "Burrito";
-export const LOCAL_STORAGE_MEAT_TOTAL = "sum";
+export const LOCAL_STORAGE_MEAT_TOTAL = "meatSum";
+
+// Local Storage for Veggie
+export const LOCAL_STORAGE_VEGGIE_TOTAL = "veggieSum";
+
+// Card Type
+export const CARD_MEAT = "CardMeat";
+export const CARD_VEGGIE = "CardVeggie";

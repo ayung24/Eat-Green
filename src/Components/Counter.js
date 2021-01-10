@@ -7,6 +7,8 @@ import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox'
 import TextField from '@material-ui/core/TextField';
 import CardActions from '@material-ui/core/CardActions';
 
+import * as Constants from "../Constants/Constants";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
@@ -50,11 +52,36 @@ class Counter extends Component {
     const newCount = this.state.count + 1;
     this.setState({ count: newCount });
     localStorage.setItem(this.props.name, newCount);
+    if(this.props.cardType === Constants.CARD_VEGGIE){
+      var currentVeggie = localStorage.getItem(Constants.LOCAL_STORAGE_VEGGIE_TOTAL);
+      if(currentVeggie){
+        localStorage.setItem(
+          Constants.LOCAL_STORAGE_VEGGIE_TOTAL,
+          Number(currentVeggie) + (this.props.protein)
+        );
+      }else{
+        localStorage.setItem(Constants.LOCAL_STORAGE_VEGGIE_TOTAL, this.props.protein);
+      }
+    }
   }
+
   DecreaseItem = () => {
     const newCount = (this.state.count > 0) ? (this.state.count - 1) : 0;
     this.setState({ count: newCount });
     localStorage.setItem(this.props.name, newCount);
+    if(this.props.cardType === Constants.CARD_VEGGIE){
+      var currentVeggie = localStorage.getItem(Constants.LOCAL_STORAGE_VEGGIE_TOTAL);
+      if(currentVeggie){
+        localStorage.setItem(
+          Constants.LOCAL_STORAGE_VEGGIE_TOTAL,
+          ((Number(currentVeggie) - (this.props.protein)) > 0) ?
+          Number(currentVeggie) - (this.props.protein)   :
+          0
+        );
+      }else{
+        localStorage.setItem(Constants.LOCAL_STORAGE_VEGGIE_TOTAL, 0);
+      }
+    }
   }
 
   render() {

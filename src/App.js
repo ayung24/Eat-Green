@@ -10,14 +10,7 @@ import * as Constant from './Constants/Constants';
 
 function App() {
   // Clean local storage init
-
-  // For Meat
-  localStorage.setItem(Constant.LOCAL_STORAGE_PORK, 0);
-  localStorage.setItem(Constant.LOCAL_STORAGE_BEEF, 0);
-  localStorage.setItem(Constant.LOCAL_STORAGE_CHICKEN_BREAST, 0);
-  localStorage.setItem(Constant.LOCAL_STORAGE_HAMBURGER, 0);
-  localStorage.setItem(Constant.LOCAL_STORAGE_BURRITO, 0);
-  localStorage.setItem(Constant.LOCAL_STORAGE_MEAT_TOTAL, 0);
+  localStorage.clear();
 
   return (
     <Router>
