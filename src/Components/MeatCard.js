@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -42,57 +42,62 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function MeatCardHooksWrapper(Component){
+  return function WrappedComponent(props) {
+    const classes = useStyles();
+    const [expanded, setExpanded] = React.useState(false);
+    return <Component {...props} classes={classes} expanded={expanded}/>
+  }
+}
 
-export default function RecipeReviewCard() {
-  const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
+class MeatCard extends Component {
+  render() {
+    // const handleExpandClick = () => {
+    //   setExpanded(!expanded);
+    // };
 
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
-  return (
-    <Card className={classes.root}>
-      <CardHeader
-        avatar={
-          <Avatar aria-label="MeatCard" className={classes.avatar}>
-            B
+    return (
+      <Card className={this.props.classes.root}>
+        <CardHeader
+          avatar={
+            <Avatar aria-label="MeatCard" className={this.props.classes.avatar}>
+              B
           </Avatar>
-        }
-        title="Burrito"
-        subheader="Protein:" x
-      />
-       <CardMedia
-        className={classes.media}
-        src={"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngitem.com%2Fmiddle%2FhJJmhT_transparent-background-burritos-png-png-download%2F&psig=AOvVaw24u-iKYuv5ll0k5Qj5ziU-&ust=1610323747560000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMjDr8qJkO4CFQAAAAAdAAAAABAD"}
-        title="Burrito"
-      />
-      {/* <CardContent>
+          }
+          title={this.props.name}
+        />
+        <CardMedia
+          className={this.props.classes.media}
+          src={"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngitem.com%2Fmiddle%2FhJJmhT_transparent-background-burritos-png-png-download%2F&psig=AOvVaw24u-iKYuv5ll0k5Qj5ziU-&ust=1610323747560000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMjDr8qJkO4CFQAAAAAdAAAAABAD"}
+          title="Burrito"
+        />
+        {/* <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           This impressive paella is a perfect party dish and a fun meal to cook together with your
           guests. Add 1 cup of frozen peas along with the mussels, if you like.
         </Typography>
       </CardContent> */}
 
+        <CardActions disableSpacing>
+          <form className={this.props.classes.root} noValidate autoComplete="off">
+            <TextField id="outlined-basic" label="Quantity" variant="outlined" />
+          </form>
 
-      <CardActions disableSpacing>
-      <form className={classes.root} noValidate autoComplete="off">
-      <TextField id="outlined-basic" label="Quantity" variant="outlined" />
-      </form>
+          <IconButton aria-label="share">
+            <AddBoxIcon />
+          </IconButton>
+          <IconButton aria-label="add to favorites">
+            <IndeterminateCheckBoxIcon />
+          </IconButton>
 
-         <IconButton aria-label="share">
-          <AddBoxIcon />
-        </IconButton>
-        <IconButton aria-label="add to favorites">
-          <IndeterminateCheckBoxIcon />
-        </IconButton>
-
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-        </CardContent>
-      </Collapse>
-    </Card>
-  );
+        </CardActions>
+        <Collapse in={this.props.expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+          </CardContent>
+        </Collapse>
+      </Card>
+    );
+  }
 }
+
+export default MeatCardHooksWrapper(MeatCard);

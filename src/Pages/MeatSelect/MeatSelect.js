@@ -26,11 +26,11 @@ class MeatSelect extends Component {
   }
 
   render() {
-
+    console.log(this.state.meatDishes[0]);
     return (
       <div>
         <div>
-          <MeatCard/>
+          <MeatCard name={"null"} />
           <Counter />
           <Counter />
         </div>
