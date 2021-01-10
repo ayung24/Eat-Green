@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import RecipeReviewCard from '../../Components/Meat/Meat.js'
 
 
 import * as Constants from '../../Constants/Constants';
@@ -22,9 +24,12 @@ const useStyles = makeStyles((theme) => ({
 
     function MeatSelect() {
     const classes = useStyles();
-  
+    var y = 10;
+
     return (
+    
       <div className={classes.root}>
+         
         <Grid container spacing={3}>
           <Grid item xs={12} container>
           </Grid>
@@ -40,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
           <Grid item xs={4}>
           </Grid>
           <Grid item xs={3}>
-            <Paper className={classes.paper}>xs=3</Paper>
+          <RecipeReviewCard> </RecipeReviewCard>
           </Grid>
           <Grid item xs={3}>
             <Paper className={classes.paper}>xs=3</Paper>
@@ -54,14 +59,16 @@ const useStyles = makeStyles((theme) => ({
           <Grid item xs={4}>
           </Grid>
           <Grid item xs={4}>
-            <Paper className={classes.paper}> Total Protein </Paper>
+            <Paper className={classes.paper}> Total Protein: {y} </Paper>
           </Grid>
           <Grid item xs={4}>
           </Grid>
           <Grid item xs={4}>
           </Grid>
-          <Grid item xs={4}>
-            <Paper className={classes.paper}> Next </Paper>
+          <Grid container item xs={4}>
+            <Button variant="contained" color="primary">
+            Next 
+            </Button>
           </Grid>
           <Grid item xs={4}>
           </Grid>
