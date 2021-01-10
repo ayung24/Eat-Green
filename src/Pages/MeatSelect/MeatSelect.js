@@ -32,7 +32,10 @@ class MeatSelect extends Component {
 
   getTotal() {
     var proteinVals = [];
-    const protein = Object.keys(this.state.meatDishes);
+    this.state.meatDishes.forEach(function(key) {
+      var meatProtein = Object.values(key)[0];
+      proteinVals.push(meatProtein);
+    });
     const total = (Number(localStorage.getItem("Pork"))*proteinVals[0]) 
     + (Number(localStorage.getItem("Beef"))*proteinVals[1]) 
     + ( Number(localStorage.getItem("Chicken breast"))*proteinVals[2]) 
@@ -68,7 +71,7 @@ class MeatSelect extends Component {
        </ Grid>
         <p>This is the meat select page</p>
         <Link to={Constants.ROUTE_VEG_SELECT}>
-          <button onClick={this.getTotal}>Click here to continue to veggie selection...</button>
+          <button onClick={this.getTotal()}>Click here to continue to veggie selection...</button>
         </Link>
       </div>
     )
