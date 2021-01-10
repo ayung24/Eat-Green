@@ -29,6 +29,7 @@ import TomatoImg from "../../Assets/tomato.png";
 import TunaImg from "../../Assets/tuna.png";
 import WalnutsImg from "../../Assets/walnuts.png";
 import { Typography } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 class VegSelect extends Component {
     constructor(props) {
@@ -237,6 +238,7 @@ class VegSelect extends Component {
 
                         {dairySoyCards}
                     </Grid>
+                 
                     {testData.map((item, idx) => (
                         <ProgressBar key={idx} bgcolor={item.bgcolor} 
                             completed={!localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL) || 
@@ -253,7 +255,7 @@ class VegSelect extends Component {
                         </p>
                     </div>
                     <Link to={Constants.ROUTE_SUMMARY}>
-                        <button variant="contained" color="secondary"> NEXT </button>
+                    <Button variant="contained" color="primary"> NEXT -> </Button>
                     </Link>
                 </div>
             </div>
