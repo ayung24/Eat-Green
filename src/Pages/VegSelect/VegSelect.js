@@ -42,8 +42,10 @@ class VegSelect extends Component {
             vegImages: {},
             fishImages: {},
             nutsImages: {},
-            dairyImages: {}
+            dairyImages: {},
+            totalVegProtein: 0
         };
+        this.onVeggieChanged = this.onVeggieChanged.bind(this);
     }
 
     componentDidMount() {
@@ -124,9 +126,20 @@ class VegSelect extends Component {
     //     }
     // }
 
+    onVeggieChanged(){
+        var meatProtein = Number(localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL));
+        var vegProtein = Number(localStorage.getItem(Constants.LOCAL_STORAGE_VEGGIE_TOTAL));
+        var percentage = ((vegProtein/meatProtein)*100).toFixed(2);
+
+        this.setState({
+            totalVegProtein: vegProtein,
+            completed: percentage
+        }) 
+    }
+
     render() {
         var testData = [
-            { bgcolor: "#00695c", completed: this.state.completed }
+            { bgcolor: "#00695c", completed: this.state.completed > 100 ? 100 : this.state.completed }
         ]
         var fishCards = [];
         var FImages = {
@@ -134,11 +147,22 @@ class VegSelect extends Component {
             Tuna: TunaImg,
             Cod: CodImg,
         };
+        let that = this;
         this.state.fish.forEach(function (key) {
             var fishName = Object.keys(key)[0];
             var fishProtein = Object.values(key)[0];
             var fishImages = (FImages)[fishName];
-            fishCards.push(<Grid key={"fish-grid" + fishName} item><FishCard key={"fish-" + fishName} cardType={Constants.CARD_VEGGIE} name={fishName} image={fishImages} protein={fishProtein} /></Grid>);
+            console.log(fishImages);
+            fishCards.push(
+                <Grid key={"fish-grid" + fishName} item>
+                    <FishCard 
+                        key={"fish-" + fishName} 
+                        cardType={Constants.CARD_VEGGIE} 
+                        name={fishName} 
+                        image={fishImages} 
+                        protein={fishProtein} 
+                        action={that.onVeggieChanged}/>
+                        </Grid>);
         });
 
         var vegCards = [];
@@ -159,10 +183,8 @@ class VegSelect extends Component {
             vegName = vegName.replace(/\s/g, '');
             var vegProtein = Object.values(key)[0];
             var vegSource = (vegImages)[vegName];
-            vegCards.push(<Grid key={"veg-grid" + vegName} item><VegCard key={"veg-" + vegName} name={vegName} image={vegSource} protein={vegProtein} cardType={Constants.CARD_VEGGIE}/></Grid>);
+            vegCards.push(<Grid key={"veg-grid" + vegName} item><VegCard key={"veg-" + vegName} name={vegName} image={vegSource} protein={vegProtein} cardType={Constants.CARD_VEGGIE} action={that.onVeggieChanged}/></Grid>);
         });
-
-       
 
         var nutCards = [];
         var nutImages = {
@@ -176,7 +198,7 @@ class VegSelect extends Component {
             var nutName = Object.keys(key)[0];
             var nutProtein = Object.values(key)[0];
             var nutSource = (nutImages)[nutName];
-            nutCards.push(<Grid key={"nut-grid" + nutName} item><NutCard key={"nut-"+ nutName} image={nutSource} name={nutName} protein={nutProtein} cardType={Constants.CARD_VEGGIE}/></Grid>);
+            nutCards.push(<Grid key={"nut-grid" + nutName} item><NutCard key={"nut-"+ nutName} image={nutSource} name={nutName} protein={nutProtein} cardType={Constants.CARD_VEGGIE} action={that.onVeggieChanged}/></Grid>);
         });
 
         var dairySoyCards = [];
@@ -188,7 +210,7 @@ class VegSelect extends Component {
             var soyName = Object.keys(key)[0];
             var soyProtein = Object.values(key)[0];
             var soySource = (soyImages)[soyName];
-            dairySoyCards.push(<Grid key={"soy-grid" + soyName} item><SoyCard key={"soy-" + soyName} image={soySource} name={soyName} protein={soyProtein} cardType={Constants.CARD_VEGGIE}/></Grid>);
+            dairySoyCards.push(<Grid key={"soy-grid" + soyName} item><SoyCard key={"soy-" + soyName} image={soySource} name={soyName} protein={soyProtein} cardType={Constants.CARD_VEGGIE} action={that.onVeggieChanged}/></Grid>);
         });
 
         return (
@@ -199,7 +221,7 @@ class VegSelect extends Component {
                         MEAT PROTEIN: {localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL) ? localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL) : 0} g
                         </p>
                         <p>
-                        VEGGIE PROTEIN: {localStorage.getItem(Constants.LOCAL_STORAGE_VEGGIE_TOTAL) ? localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL) : 0} g
+                        VEGGIE PROTEIN: {this.state.totalVegProtein} g
                         </p>
                     </div>
                   

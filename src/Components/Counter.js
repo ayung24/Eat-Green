@@ -62,6 +62,7 @@ class Counter extends Component {
       }else{
         localStorage.setItem(Constants.LOCAL_STORAGE_VEGGIE_TOTAL, this.props.protein);
       }
+      this.props.action();
     }
   }
 
@@ -81,6 +82,7 @@ class Counter extends Component {
       }else{
         localStorage.setItem(Constants.LOCAL_STORAGE_VEGGIE_TOTAL, 0);
       }
+      this.props.action();
     }
   }
 
