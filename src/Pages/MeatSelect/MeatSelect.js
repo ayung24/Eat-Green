@@ -4,6 +4,12 @@ import { db } from "../../firebase";
 import Counter from "../../Components/Counter";
 import MeatCard from "../../Components/MeatCard";
 import Grid from '@material-ui/core/Grid';
+import PorkImage from "../../Assets/pork.png";
+import BeefImage from "../../Assets/steak.png";
+import ChickenImage from "../../Assets/chicken.png";
+import BurritoImage from "../../Assets/burrito.png";
+import HamburgerImage from "../../Assets/burger.png";
+
 
 
 
@@ -14,7 +20,7 @@ class MeatSelect extends Component {
     super(props);
     this.state = {
       meatDishes: [],
-      // meatImages ={} // make key value pair
+      meatImages: {} 
     };
   }
 
@@ -29,12 +35,22 @@ class MeatSelect extends Component {
   }
 
   render() {
+    var meatImages = {
+      pork: PorkImage,
+      beef: BeefImage, 
+      chicken: ChickenImage,
+      Burrito: BurritoImage,
+      hamburger: HamburgerImage,
+    }; 
     var meatCards = [];
     this.state.meatDishes.forEach(function(key) {
-      // var ImageMeet = (meatImages)[key];
+   
       var meatName = Object.keys(key)[0];
+      var ImageMeat = (meatImages)[meatName];
+      console.log(ImageMeat);
+      // console.log(Object.keys(key)[0]);
       var meatProtein = Object.values(key)[0];
-      meatCards.push(<Grid item><MeatCard name={meatName} protein={meatProtein}/></Grid>);
+      meatCards.push(<Grid item><MeatCard name={meatName} image={ImageMeat} protein={meatProtein}/></Grid>);
     });
 
     return (
