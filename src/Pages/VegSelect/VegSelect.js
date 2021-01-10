@@ -5,6 +5,8 @@ import * as Constants from '../../Constants/Constants';
 import ProgressBar from "../../Components/ProgressBar/ProgressBar";
 // import {arr} from '../MeatSelect';
 
+const itemCount = window.$itemCount;
+
 const testData = [
     { bgcolor: "#00695c", completed: 50 }
   ];
@@ -62,6 +64,7 @@ class VegSelect extends Component {
                 <ProgressBar key={idx} bgcolor={item.bgcolor} completed={item.completed}>
                 </ProgressBar>
                 ))}
+                <p>{ itemCount }</p>
             </div>
         )
     }
