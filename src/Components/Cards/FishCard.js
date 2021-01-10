@@ -50,7 +50,7 @@ class FishCard extends Component {
         <CardHeader
           avatar={
             <Avatar aria-label="FishCard" className={this.props.classes.avatar}>
-              B
+              {this.props.name.charAt(0)}
             </Avatar>
           }
           title= {this.props.name}

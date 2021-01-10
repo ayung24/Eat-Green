@@ -50,7 +50,7 @@ class SoyCard extends Component {
         <CardHeader
           avatar={
             <Avatar aria-label="SoyCard" className={this.props.classes.avatar}>
-              B
+              {this.props.name.charAt(0)}
             </Avatar>
           }
           title= {this.props.name}

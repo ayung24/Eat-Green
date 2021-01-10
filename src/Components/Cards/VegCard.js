@@ -50,7 +50,7 @@ class VegCard extends Component {
         <CardHeader
           avatar={
             <Avatar aria-label="VegCard" className={this.props.classes.avatar}>
-              {this.props.name.charAt (0)}
+              {this.props.name.charAt(0)}
             </Avatar>
           }
           title= {this.props.name}
