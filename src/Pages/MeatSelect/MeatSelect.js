@@ -38,8 +38,6 @@ class MeatSelect extends Component {
       <div>
         <div>
           {meatCards}
-          <Counter />
-          <Counter />
         </div>
         <p>This is the meat select page</p>
         <Link to={Constants.ROUTE_VEG_SELECT}>

@@ -18,6 +18,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox';
 import TextField from '@material-ui/core/TextField'
+import Counter from "./Counter";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -82,19 +83,7 @@ class MeatCard extends Component {
         </Typography>
       </CardContent> */}
 
-        <CardActions disableSpacing>
-          <form className={this.props.classes.root} noValidate autoComplete="off">
-            <TextField id="outlined-basic" label="Quantity" variant="outlined" />
-          </form>
-
-          <IconButton aria-label="share">
-            <AddBoxIcon />
-          </IconButton>
-          <IconButton aria-label="add to favorites">
-            <IndeterminateCheckBoxIcon />
-          </IconButton>
-
-        </CardActions>
+      <Counter/>
         <Collapse in={this.props.expanded} timeout="auto" unmountOnExit>
           <CardContent>
           </CardContent>
