@@ -7,6 +7,28 @@ import VegCard from "../../Components/Cards/VegCard";
 import FishCard from "../../Components/Cards/FishCard";
 import NutCard from "../../Components/Cards/NutCard";
 import SoyCard from "../../Components/Cards/SoyCard";
+import Grid from '@material-ui/core/Grid';
+import AlmondImg from "../../Assets/almonds.png";
+import BrocolliImg from "../../Assets/brocolli.png";
+import CarrotImg from "../../Assets/carrot.png";
+import CashewImg from "../../Assets/cashew.png";
+import CfImg from "../../Assets/cf.png";
+import CodImg from "../../Assets/cod.png";
+import EggplantImg from "../../Assets/eggplant.png";
+import EggImg from "../../Assets/egg.png";
+import GreenImg from "../../Assets/greenb.png";
+import KaleImg from "../../Assets/kale.png";
+import LettuceImg from "../../Assets/lettuce.png";
+import PeanutImg from "../../Assets/peanut.png";
+import PistachioImg from "../../Assets/pistachio.png";
+import PotatoImg from "../../Assets/potato.png";
+import SalmonImg from "../../Assets/salmon.png";
+import SpinachImg from "../../Assets/spinach.png";
+import TofuImg from "../../Assets/tofu.png";
+import TomatoImg from "../../Assets/tomato.png";
+import TunaImg from "../../Assets/tuna.png";
+import WalnutsImg from "../../Assets/walnuts.png";
+import { Typography } from '@material-ui/core';
 
 class VegSelect extends Component {
     constructor(props) {
@@ -16,7 +38,11 @@ class VegSelect extends Component {
             fish: [],
             nuts: [],
             dairySoy: [],
-            completed: 0
+            completed: 0,
+            vegImages: {},
+            fishImages: {},
+            nutsImages: {},
+            dairyImages: {}
         };
     }
 
@@ -102,33 +128,68 @@ class VegSelect extends Component {
         var testData = [
             { bgcolor: "#00695c", completed: this.state.completed }
         ]
-
-        var vegCards = [];
-        this.state.veg.forEach(function (key) {
-            var vegName = Object.keys(key)[0];
-            var vegProtein = Object.values(key)[0];
-            vegCards.push(<VegCard key={"veg-" + vegName} name={vegName} protein={vegProtein} cardType={Constants.CARD_VEGGIE}/>);
-        });
-
         var fishCards = [];
+        var FImages = {
+            Salmon: SalmonImg,
+            Tuna: TunaImg,
+            Cod: CodImg,
+        };
         this.state.fish.forEach(function (key) {
             var fishName = Object.keys(key)[0];
             var fishProtein = Object.values(key)[0];
-            fishCards.push(<FishCard key={"fish-" + fishName} name={fishName} protein={fishProtein} cardType={Constants.CARD_VEGGIE}/>);
+            var fishImages = (FImages)[fishName];
+            console.log(fishImages);
+            fishCards.push(<Grid item><FishCard key={"fish-" + fishName} cardType={Constants.CARD_VEGGIE} name={fishName} image={fishImages} protein={fishProtein} /></Grid>);
         });
 
+        var vegCards = [];
+        var vegImages = {
+            Carrot: CarrotImg,
+            Eggplant: EggplantImg,
+            Kale: KaleImg,
+            Cauliflower: CfImg,
+            Tomato: TomatoImg,
+            Lettuce: LettuceImg,
+            Broccoli: BrocolliImg,
+            Greenbeans: GreenImg,
+            Spinach: SpinachImg,
+            Potato: PotatoImg,
+        }
+        this.state.veg.forEach(function (key) {
+            var vegName = Object.keys(key)[0];
+            vegName = vegName.replace(/\s/g, '');
+            var vegProtein = Object.values(key)[0];
+            var vegSource = (vegImages)[vegName];
+            vegCards.push(<Grid item><VegCard key={"veg-" + vegName} name={vegName} image={vegSource} protein={vegProtein} cardType={Constants.CARD_VEGGIE}/></Grid>);
+        });
+
+       
+
         var nutCards = [];
+        var nutImages = {
+            Walnut: WalnutsImg,
+            Cashew: CashewImg,
+            Almond: AlmondImg,
+            Pistachio: PistachioImg,
+            Peanut: PeanutImg,
+        };
         this.state.nuts.forEach(function (key) {
             var nutName = Object.keys(key)[0];
             var nutProtein = Object.values(key)[0];
-            nutCards.push(<NutCard key={"nut-"+ nutName} name={nutName} protein={nutProtein} cardType={Constants.CARD_VEGGIE}/>);
+            var nutSource = (nutImages)[nutName];
+            nutCards.push(<Grid item><NutCard key={"nut-"+ nutName} image={nutSource} name={nutName} protein={nutProtein} cardType={Constants.CARD_VEGGIE}/></Grid>);
         });
 
         var dairySoyCards = [];
+        var soyImages = {
+            Tofu: TofuImg,
+            Egg: EggImg,
+        };
         this.state.dairySoy.forEach(function (key) {
             var soyName = Object.keys(key)[0];
             var soyProtein = Object.values(key)[0];
-            dairySoyCards.push(<SoyCard key={"soy-" + soyName} name={soyName} protein={soyProtein} cardType={Constants.CARD_VEGGIE}/>);
+            var soySource = (soyImages)[soyName];
+            dairySoyCards.push(<Grid item><SoyCard key={"soy-" + soyName} image={soySource} name={soyName} protein={soyProtein} cardType={Constants.CARD_VEGGIE}/></Grid>);
         });
 
         return (
@@ -142,27 +203,33 @@ class VegSelect extends Component {
                         VEGGIE PROTEIN: {localStorage.getItem(Constants.LOCAL_STORAGE_VEGGIE_TOTAL) ? localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL) : 0} g
                         </p>
                     </div>
+                  
+                    <Grid justify="center" >
+                        <Typography variant="h2" component="h2" >
+                        Pick the meat alternatives until you have reached the minimum target goal for protein!
+                        </Typography>
+                    </Grid>
                 </div>
                 {testData.map((item, idx) => (
                         <ProgressBar key={idx} bgcolor={item.bgcolor} completed={item.completed}>
                         </ProgressBar>
                     ))}
                 <div>
-                    <div>
+                    <Grid justify="center" alignItems="center" container spacing={2}>
                         {fishCards}
-                    </div>
-                    <div>
+                    </Grid>
+
+
+                    <Grid justify="center" alignItems="center" container spacing={2}>
                         {vegCards}
-                    </div>
-                    <div>
+
                         {nutCards}
-                    </div>
-                    <div>
+
                         {dairySoyCards}
-                    </div>
-                    <p>This is the veggie page</p>
+                    </Grid>
+                    {/* <p>This is the veggie page</p> */}
                     <Link to={Constants.ROUTE_SUMMARY}>
-                        <button>Click here to continue to summary page...</button>
+                        <button variant="contained" color="secondary"> NEXT -> </button>
                     </Link>
 
                     {testData.map((item, idx) => (

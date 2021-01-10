@@ -42,6 +42,7 @@ function FishCardHooksWrapper(Component){
 
 class FishCard extends Component {
   render() {
+    const cardName = this.props.name;
     const protein = "Protein: " + String(this.props.protein) + " g";
 
     return (
@@ -57,8 +58,8 @@ class FishCard extends Component {
         />
         <CardMedia
           className={this.props.classes.media}
-          src={"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngitem.com%2Fmiddle%2FhJJmhT_transparent-background-burritos-png-png-download%2F&psig=AOvVaw24u-iKYuv5ll0k5Qj5ziU-&ust=1610323747560000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMjDr8qJkO4CFQAAAAAdAAAAABAD"}
-          title="Burrito"
+          image={this.props.image}
+          title={cardName}
         />
 
       <Counter {... this.props}/>

@@ -9,6 +9,7 @@ import Avatar from '@material-ui/core/Avatar';
 import { red } from '@material-ui/core/colors';
 import Counter from "./Counter";
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
@@ -46,6 +47,7 @@ class MeatCard extends Component {
     const protein = "Protein: " + String(this.props.protein) + " g";
 
     return (
+      
       <Card className={this.props.classes.root}>
         <CardHeader
           avatar={

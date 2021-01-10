@@ -12,6 +12,7 @@ import Counter from "../Counter";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
+    maxHeight: 400
   },
   media: {
     height: 0,
