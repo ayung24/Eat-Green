@@ -2,6 +2,11 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import { db } from "../../firebase";
 import * as Constants from '../../Constants/Constants';
+// import {arr} from '../MeatSelect';
+
+const testData = [
+    { bgcolor: "#00695c", completed: 50 }
+  ];
 
 class VegSelect extends Component {
     constructor(props) {
@@ -51,6 +56,11 @@ class VegSelect extends Component {
                 <Link to={Constants.ROUTE_SUMMARY}>
                     <button>Click here to continue to summary page...</button>
                 </Link>
+
+                {testData.map((item, idx) => (
+                <ProgressBar key={idx} bgcolor={item.bgcolor} completed={item.completed}>
+                </ProgressBar>
+                ))}
             </div>
         )
     }
