@@ -3,9 +3,10 @@ import {Link} from 'react-router-dom';
 import { db } from "../../firebase";
 import * as Constants from '../../Constants/Constants';
 import ProgressBar from "../../Components/ProgressBar/ProgressBar";
-// import {arr} from '../MeatSelect';
-
-const itemCount = window.$itemCount;
+import VegCard from "../../Components/Cards/VegCard";
+import FishCard from "../../Components/Cards/FishCard";
+import NutCard from "../../Components/Cards/NutCard";
+import SoyCard from "../../Components/Cards/SoyCard";
 
 const testData = [
     { bgcolor: "#00695c", completed: 50 }
@@ -53,8 +54,50 @@ class VegSelect extends Component {
             });
     }
     render() {
+
+        var vegCards = [];
+        this.state.veg.forEach(function(key) {
+            var vegName = Object.keys(key)[0];
+            var vegProtein = Object.values(key)[0];
+            vegCards.push(<VegCard name={vegName} protein={vegProtein}/>);
+        });
+
+        var fishCards = [];
+        this.state.fish.forEach(function(key) {
+            var fishName = Object.keys(key)[0];
+            var fishProtein = Object.values(key)[0];
+            fishCards.push(<FishCard name={fishName} protein={fishProtein}/>);
+        });
+
+        var nutCards = [];
+        this.state.nuts.forEach(function(key) {
+            var nutName = Object.keys(key)[0];
+            var nutProtein = Object.values(key)[0];
+            nutCards.push(<NutCard name={nutName} protein={nutProtein}/>);
+        });
+
+        var dairySoyCards = [];
+        this.state.dairySoy.forEach(function(key) {
+            var soyName = Object.keys(key)[0];
+            var soyProtein = Object.values(key)[0];
+            dairySoyCards.push(<SoyCard name={soyName} protein={soyProtein}/>);
+        });
+
         return (
             <div>
+                <div>
+                {fishCards}
+                </div>
+                <div>
+                {vegCards}
+                </div>
+                <div>
+                {nutCards}
+                </div>
+                <div>
+                {dairySoyCards}
+                </div>
+
                 <p>This is the veggie page</p>
                 <Link to={Constants.ROUTE_SUMMARY}>
                     <button>Click here to continue to summary page...</button>
@@ -64,7 +107,6 @@ class VegSelect extends Component {
                 <ProgressBar key={idx} bgcolor={item.bgcolor} completed={item.completed}>
                 </ProgressBar>
                 ))}
-                <p>{ itemCount }</p>
             </div>
         )
     }

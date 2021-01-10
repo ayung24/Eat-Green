@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { db } from "../../firebase";
 import Counter from "../../Components/Counter";
-import MeatCard from "../../Components/MeatCard";
-
-
+import MeatCard from "../../Components/Cards/MeatCard";
 import * as Constants from '../../Constants/Constants';
 
 class MeatSelect extends Component {
