@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { db } from "../../firebase";
 import Counter from "../../Components/Counter";
 import MeatCard from "../../Components/MeatCard";
+import Grid from '@material-ui/core/Grid';
+
 
 
 import * as Constants from '../../Constants/Constants';
@@ -11,7 +13,8 @@ class MeatSelect extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      meatDishes: []
+      meatDishes: [],
+      // meatImages ={} // make key value pair
     };
   }
 
@@ -26,19 +29,20 @@ class MeatSelect extends Component {
   }
 
   render() {
-
     var meatCards = [];
     this.state.meatDishes.forEach(function(key) {
+      // var ImageMeet = (meatImages)[key];
       var meatName = Object.keys(key)[0];
       var meatProtein = Object.values(key)[0];
-      meatCards.push(<MeatCard name={meatName} protein={meatProtein}/>);
+      meatCards.push(<Grid item><MeatCard name={meatName} protein={meatProtein}/></Grid>);
     });
 
     return (
       <div>
-        <div>
+
+        <Grid container spacing={2}>
           {meatCards}
-        </div>
+       </ Grid>
         <p>This is the meat select page</p>
         <Link to={Constants.ROUTE_VEG_SELECT}>
           <button>Click here to continue to veggie selection...</button>
