@@ -86,7 +86,6 @@ class VegSelect extends Component {
             fishCount = localStorage.getItem("Salmon")*fishProteinVals[0];
         }
         this.setState({completed: this.state.completed + fishCount});
-
     }
 
     addVegProtein() {
@@ -129,8 +128,11 @@ class VegSelect extends Component {
     onVeggieChanged(){
         var meatProtein = Number(localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL));
         var vegProtein = Number(localStorage.getItem(Constants.LOCAL_STORAGE_VEGGIE_TOTAL));
-        var percentage = ((vegProtein/meatProtein)*100).toFixed(2);
-
+        
+        var percentage = 100;
+        if(meatProtein !== 0) percentage = ((vegProtein/meatProtein)*100).toFixed(2);
+        else percentage = 0;
+        
         this.setState({
             totalVegProtein: vegProtein,
             completed: percentage
@@ -216,15 +218,6 @@ class VegSelect extends Component {
         return (
             <div>
                 <div>
-                    <div>
-                        <p>
-                        MEAT PROTEIN: {localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL) ? localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL) : 0} g
-                        </p>
-                        <p>
-                        VEGGIE PROTEIN: {this.state.totalVegProtein} g
-                        </p>
-                    </div>
-                  
                     <Grid container justify="center" key="veg-grid2">
                         <Typography variant="h2" component="h2" >
                         Pick the meat alternatives until you have reached the minimum target goal for protein!
@@ -244,18 +237,26 @@ class VegSelect extends Component {
 
                         {dairySoyCards}
                     </Grid>
-                    {/* <p>This is the veggie page</p> */}
+                    {testData.map((item, idx) => (
+                        <ProgressBar key={idx} bgcolor={item.bgcolor} 
+                            completed={!localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL) || 
+                            localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL) == 0        ? 
+                            100:item.completed}>
+                        </ProgressBar>
+                    ))}
+                    <div>
+                        <p>
+                        MEAT PROTEIN: {localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL) ? localStorage.getItem(Constants.LOCAL_STORAGE_MEAT_TOTAL) : 0} g
+                        </p>
+                        <p>
+                        VEGGIE PROTEIN: {this.state.totalVegProtein} g
+                        </p>
+                    </div>
                     <Link to={Constants.ROUTE_SUMMARY}>
                         <button variant="contained" color="secondary"> NEXT </button>
                     </Link>
-
-                    {testData.map((item, idx) => (
-                        <ProgressBar key={idx} bgcolor={item.bgcolor} completed={item.completed}>
-                        </ProgressBar>
-                    ))}
                 </div>
             </div>
-
         )
     }
 }
