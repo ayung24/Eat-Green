@@ -136,7 +136,9 @@ class Summary extends Component{
                                 style={{
                                 fontWeight: "bold",
                                 color: "black",
-                                position: "absolute", // child
+                                paddingTop: "80px",
+                                paddingLeft: "10px",
+                                position: "flex", // child
                                 bottom: 420, // position where you want
                                 left: 370
                                 }}>
@@ -154,7 +156,9 @@ class Summary extends Component{
                                 style={{
                                 fontWeight: "bold",
                                 color: "black",
-                                position: "absolute", // child
+                                paddingTop: "80px",
+                                paddingLeft: "10px",
+                                position: "flex", // child
                                 bottom: 420, // position where you want
                                 left: 600
                                 }}>
