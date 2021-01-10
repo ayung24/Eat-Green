@@ -70,7 +70,7 @@ class MeatSelect extends Component {
             {meatCards}
           </ Grid>
           <Link to={Constants.ROUTE_VEG_SELECT}>
-            <Button  style={{marginTop: "100px"}}variant="contained" color="primary" onClick={this.getTotal.bind(this)} > NEXT </Button>
+            <Button  style={{marginTop: "100px", marginBottom: "100px"}}variant="contained" color="primary" onClick={this.getTotal.bind(this)} > NEXT </Button>
           </Link>
         </Grid>
       </div>

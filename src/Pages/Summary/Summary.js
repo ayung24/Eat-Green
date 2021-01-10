@@ -136,10 +136,10 @@ class Summary extends Component {
                                     <Grid item>
                                         <Grid container wrap="nowrap" item justify="center">
                                             <Grid item >
-                                                <Paper style={{ minHeight: 300, minWidth: 200 }}>
+                                                <Paper style={{ backgroundColor: "#91e2b2", minHeight: 300, minWidth: 200}}>
                                                     <Typography noWrap aligncenter="true">
                                                         {selectedProteins.map(protein => (
-                                                            <li style={{ listStyleType: "none", textIndent: "3rem" }} key={protein}>{protein}</li>
+                                                            <li style={{ listStyleType: "none", textIndent: "3rem", marginTop: "20px"  }} key={protein}>{protein}</li>
                                                         ))}
                                                     </Typography>
                                                 </Paper>
@@ -155,10 +155,10 @@ class Summary extends Component {
                                     }}>equates to</h3>
                                     <Grid container wrap="nowrap" spacing={2} justify="center">
                                         <Grid item>
-                                            <Paper style={{ minHeight: 300, minWidth: 200 }}>
+                                            <Paper style={{ backgroundColor: "#91e2b2", minHeight: 300, minWidth: 200 }}>
                                                 <Typography noWrap aligncenter="true">
                                                     {selectedVeg.map(protein => (
-                                                        <li style={{ listStyleType: "none", textIndent: "3rem" }} key={protein}>{protein}</li>
+                                                        <li style={{ listStyleType: "none", textIndent: "3rem", marginTop: "20px" }} key={protein}>{protein}</li>
                                                     ))}
                                                 </Typography>
                                             </Paper>
